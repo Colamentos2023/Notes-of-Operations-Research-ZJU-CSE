@@ -524,6 +524,146 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
     
     ~\ref{2.4}\textbf{节所有上述所有过程一般上不需要我们了解的过于深入，因为有现成的计算机函数可以用，但是可以领会其思想。}
 
+    \begin{exbox}{单纯形法求解完整过程}
+        \textbf{问题描述：}
+        \[
+        \text{min } z = 2x_1 + 3x_2
+        \]
+        \[
+        \text{s.t. }
+        \begin{cases}
+        x_1 + x_2 \geq 7 \\
+        x_1 - x_2 \leq 10 \\
+        x_1 \geq 0, \quad x_2 \text{ 自由}
+        \end{cases}
+        \]
+        
+        \medskip
+        
+        \textbf{步骤 1：转换为标准形式}
+        \begin{enumerate}
+          \item \textbf{处理自由变量}：令 \( x_2 = x_2^+ - x_2^- \)，其中 \( x_2^+ \geq 0 \), \( x_2^- \geq 0 \)。
+          \item \textbf{引入松弛变量}：
+            \begin{itemize}
+              \item 约束 \( x_1 + x_2 \geq 7 \) -> \( x_1 + x_2^+ - x_2^- - s_1 = 7 \)（剩余变量 \( s_1 \geq 0 \)）。
+              \item 约束 \( x_1 - x_2 \leq 10 \) -> \( x_1 - x_2^+ + x_2^- + s_2 = 10 \)（松弛变量 \( s_2 \geq 0 \)）。
+            \end{itemize}
+          \item \textbf{目标函数}：
+            \[
+            z = 2x_1 + 3x_2^+ - 3x_2^- + 0s_1 + 0s_2
+            \]
+        \end{enumerate}
+        
+        \medskip
+        
+        \textbf{步骤 2：初始单纯形表}\\
+        选择初始基变量 \( \{x_1, s_2\} \)，通过行变换使基变量对应的列变为单位矩阵：
+        
+        \[
+        \begin{array}{cccccc|c}
+         & x_1 & x_2^+ & x_2^- & s_1 & s_2 & \text{RHS} \\
+        \midrule
+        x_1 & 1 & 1 & -1 & -1 & 0 & 7 \\
+        s_2 & 1 & -1 & 1 & 0 & 1 & 10 \\
+        \end{array}
+        \]
+        
+        \textbf{行变换}：Row 2 <- Row 2 - Row 1\\
+        更新后的单纯形表：
+        
+        \[
+        \begin{array}{cccccc|c}
+         & x_1 & x_2^+ & x_2^- & s_1 & s_2 & \text{RHS} \\
+        \midrule
+        x_1 & 1 & 1 & -1 & -1 & 0 & 7 \\
+        s_2 & 0 & -2 & 2 & 1 & 1 & 3 \\
+        \end{array}
+        \]
+        
+        \medskip
+        
+        \textbf{步骤 3：计算检验数}\\
+        检验数公式：\( \sigma_j = c_j - c_B^T A_B^{-1} A_j \) \\
+        当前基变量 \( \{x_1, s_2\} \)，\( c_B = [2, 0] \)。
+        
+        \[
+        \begin{align*}
+        \sigma_{x_1} &= 2 - [2, 0] \begin{bmatrix}1\\0\end{bmatrix} = 0 \\
+        \sigma_{x_2^+} &= 3 - [2, 0] \begin{bmatrix}1\\-2\end{bmatrix} = 1 \\
+        \sigma_{x_2^-} &= -3 - [2, 0] \begin{bmatrix}-1\\2\end{bmatrix} = -1 \quad (\text{最小，进基}) \\
+        \sigma_{s_1} &= 0 - [2, 0] \begin{bmatrix}-1\\1\end{bmatrix} = 2 \\
+        \sigma_{s_2} &= 0 - [2, 0] \begin{bmatrix}0\\1\end{bmatrix} = 0 \\
+        \end{align*}
+        \]
+        
+        \medskip
+        
+        \textbf{步骤 4：确定进基和出基变量}
+        \begin{itemize}
+          \item \textbf{进基变量}：\( x_2^- \)（因 \( \sigma_{x_2^-} = -1 < 0 \)）。
+          \item \textbf{出基变量}：计算比率 \( \theta = \frac{\text{RHS}}{\text{进基列，此处为}[-1, 2]} \)：
+            \begin{itemize}
+              \item \( \theta_{x_1} = \frac{7}{-1} \)（舍去，因分母为负）。
+              \item \( \theta_{s_2} = \frac{3}{2} = 1.5 \)（最小正值，出基）。
+            \end{itemize}
+        \end{itemize}
+        
+        \medskip
+        
+        \textbf{步骤 5：更新单纯形表}\\
+        通过行变换使 \( x_2^- \) 对应的列变为 \( [0, 1]^T \)：
+        \begin{enumerate}
+          \item Row 2 <- Row 2 / 2  
+          \item Row 1 <- Row 1 + Row 2  
+        \end{enumerate}
+        
+        更新后的单纯形表：
+        
+        \[
+        \begin{array}{cccccc|c}
+         & x_1 & x_2^+ & x_2^- & s_1 & s_2 & \text{RHS} \\
+        \midrule
+        x_1 & 1 & 0 & 0 & -0.5 & 0.5 & 8.5 \\
+        x_2^{-} & 0 & -1 & 1 & 0.5 & 0.5 & 1.5 \\
+        \end{array}
+        \]
+        
+        \medskip
+        
+        \textbf{步骤 6：重新计算检验数}\\
+        当前基变量 \( \{x_1, x_2^-\} \)，\( c_B = [2, -3] \)。
+        
+        \[
+        \begin{align*}
+        \sigma_{x_1} &= 2 - [2, -3] \begin{bmatrix}1\\0\end{bmatrix} = 0 \\
+        \sigma_{x_2^+} &= 3 - [2, -3] \begin{bmatrix}0\\-1\end{bmatrix} = 0 \\
+        \sigma_{x_2^-} &= -3 - [2, -3] \begin{bmatrix}0\\1\end{bmatrix} = 0 \\
+        \sigma_{s_1} &= 0 - [2, -3] \begin{bmatrix}-0.5\\0.5\end{bmatrix} = 2.5 \\
+        \sigma_{s_2} &= 0 - [2, -3] \begin{bmatrix}0.5\\0.5\end{bmatrix} = 0.5 \\
+        \end{align*}
+        \]
+        
+        \textbf{所有检验数 \( \geq 0 \)}，当前解为最优解。
+        
+        \medskip
+        
+        \textbf{步骤 7：提取最优解}\\
+        从最终单纯形表：
+        \begin{itemize}
+          \item \( x_1 = 8.5 \), \( x_2^- = 1.5 \), \( x_2^+ = s_1 = s_2 = 0 \)。
+          \item 原变量 \( x_2 = x_2^+ - x_2^- = -1.5 \)。
+          \item 目标值 \( z = 2 \times 8.5 + 3 \times (-1.5) = 12.5 \)。
+        \end{itemize}
+        
+        \medskip
+        
+        \textbf{最终答案：}
+        \begin{itemize}
+          \item \textbf{最优解}：\( x_1 = 8.5 \), \( x_2 = -1.5 \)。
+          \item \textbf{最优值}：\( z = 12.5 \)。  
+          \item \textbf{验证}：与图解法结果一致，求解正确。
+        \end{itemize}
+    \end{exbox}
 
     \section{线性规划问题的灵敏度分析}
     在线性规划模型
