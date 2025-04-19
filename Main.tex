@@ -1,0 +1,24 @@
+\def\allfiles{}
+\documentclass[math,code]{amznotes}
+\usepackage{xcolor}     % color
+\usepackage{lipsum}     % filler text
+\usepackage{ulem}       % underline
+\usepackage{float}
+\usepackage{subfiles}
+\usepackage{amsmath}  % 提供矩阵环境
+\usepackage{tikz}     % 用于绘制圆圈
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{hyperref}
+%\special{dvipdfmx:config z 0}   % 加快编译速度
+\usetikzlibrary{matrix,decorations.pathreplacing}
+%\includeonly{./Chapters/Chapter 4.tex}
+\begin{document}
+    \tableofcontents
+    \include{./Chapters/Chapter 1.tex}
+    \include{./Chapters/Chapter 2.tex}
+    \include{./Chapters/hw2.tex}
+    \include{./Chapters/Chapter 3.tex}
+    \include{./Chapters/Chapter 4.tex}
+\end{document}

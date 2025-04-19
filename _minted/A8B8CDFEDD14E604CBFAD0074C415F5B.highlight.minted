@@ -1,0 +1,18 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{MODEL}
+\PYG{l+s}{sets}\PYG{p}{;}
+\PYG{n}{row}\PYG{o}{/}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{o}{/}\PYG{p}{:}\PYG{n}{b}\PYG{p}{;}
+\PYG{n}{arrange}\PYG{o}{/}\PYG{l+m+mf}{1.}\PYG{l+m+mf}{.5}\PYG{o}{/}\PYG{p}{:}\PYG{n}{x}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{;}
+\PYG{n}{endsets}\PYG{p}{;}
+
+\PYG{n}{data}\PYG{p}{:}
+\PYG{n}{b}\PYG{p}{=}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{n}{c}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mf}{0.2}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{l+m+mf}{0.8}\PYG{p}{.}
+\PYG{n}{a}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{n}{enddata}\PYG{p}{.}
+
+\PYG{p}{[}\PYG{n}{oBJ}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{=}\PYG{p}{@}\PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{arrange}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{:}\PYG{n}{c}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{o}{*}\PYG{n}{x}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{@}\PYG{k}{for}\PYG{p}{(}\PYG{n}{row}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{:}\PYG{p}{@}\PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{arrange}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}\PYG{n}{a}\PYG{p}{(}\PYG{n}{lj}\PYG{p}{)}\PYG{o}{*}\PYG{n}{x}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{)}\PYG{p}{=}\PYG{n}{b}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{@}\PYG{k}{for}\PYG{p}{(}\PYG{n}{arrange}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}\PYG{n}{x}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{END}
+\end{MintedVerbatim}

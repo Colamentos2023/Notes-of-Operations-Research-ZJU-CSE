@@ -1,0 +1,105 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZpc{} 配餐优化：求解浮点数和整数解}
+\PYG{n+nb}{clear}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{clc}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 营养含量矩阵 A（6x5，行：B1\PYGZhy{}B6，列：A1\PYGZhy{}A5）}
+\PYG{n}{A}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{4.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.9}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{4.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.7}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mf}{0.6}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{4.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mf}{0.7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{4.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.3}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{4.0}\PYG{p}{;}
+\PYG{+w}{     }\PYG{l+m+mf}{1.2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.3}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 最低营养需求 B（6x1）}
+\PYG{n}{B}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{16.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{26.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{18.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{12.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{14.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{20.0}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 食物单价 c（5x1）}
+\PYG{n}{c}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{7}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 约束：A*x \PYGZgt{}= B =\PYGZgt{} \PYGZhy{}A*x \PYGZlt{}= \PYGZhy{}B}
+\PYG{n}{A\PYGZus{}ineq}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{A}\PYG{p}{;}
+\PYG{n}{b\PYGZus{}ineq}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{B}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 第一部分：仅满足营养需求}
+
+\PYG{c}{\PYGZpc{} 下界}
+\PYG{n}{lb1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 求解浮点数解}
+\PYG{p}{[}\PYG{n}{x1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exitflag1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{linprog}\PYG{p}{(}\PYG{n}{c}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{A\PYGZus{}ineq}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b\PYGZus{}ineq}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lb1}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 输出浮点数结果}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{第一部分（浮点数解）:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{exitflag1}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{摄入量: A1=\PYGZpc{}.2f, A2=\PYGZpc{}.2f, A3=\PYGZpc{}.2f, A4=\PYGZpc{}.2f, A5=\PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{成本: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval1}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{未找到解\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} 求解整数解}
+\PYG{n}{intcon}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{;}
+\PYG{p}{[}\PYG{n}{x1\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval1\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exitflag1\PYGZus{}int}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{intlinprog}\PYG{p}{(}\PYG{n}{c}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{intcon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{A\PYGZus{}ineq}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b\PYGZus{}ineq}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lb1}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 输出整数结果}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n第一部分（整数解）:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{exitflag1\PYGZus{}int}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{摄入量: A1=\PYGZpc{}d, A2=\PYGZpc{}d, A3=\PYGZpc{}d, A4=\PYGZpc{}d, A5=\PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x1\PYGZus{}int}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{成本: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval1\PYGZus{}int}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{nutrition1\PYGZus{}int}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{x1\PYGZus{}int}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{营养验证:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{6}
+\PYG{+w}{        }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{B\PYGZpc{}d: \PYGZpc{}.2f \PYGZgt{}= \PYGZpc{}.2f (\PYGZpc{}s)\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{nutrition1\PYGZus{}int}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{满足\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{不满足\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{未找到解\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} 第二部分：增加最低摄入量约束}
+
+\PYG{c}{\PYGZpc{} 最低摄入量 d（5x1）}
+\PYG{n}{d}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mf}{2.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{3.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{3.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mf}{3.0}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 下界}
+\PYG{n}{lb2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{d}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 求解浮点数解}
+\PYG{p}{[}\PYG{n}{x2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exitflag2}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{linprog}\PYG{p}{(}\PYG{n}{c}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{A\PYGZus{}ineq}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b\PYGZus{}ineq}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lb2}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 输出浮点数结果}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n第二部分（浮点数解）:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{exitflag2}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{摄入量: A1=\PYGZpc{}.2f, A2=\PYGZpc{}.2f, A3=\PYGZpc{}.2f, A4=\PYGZpc{}.2f, A5=\PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x2}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{成本: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval2}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{未找到解\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} 求解整数解}
+\PYG{n}{lb2\PYGZus{}int}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{ceil}\PYG{p}{(}\PYG{n}{d}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{A\PYGZus{}ineq\PYGZus{}int}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{A\PYGZus{}ineq}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{A\PYGZus{}ineq\PYGZus{}int}\PYG{p}{(}\PYG{k}{end}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{b\PYGZus{}ineq\PYGZus{}int}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{b\PYGZus{}ineq}\PYG{p}{;}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{;}
+\PYG{p}{[}\PYG{n}{x2\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval2\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exitflag2\PYGZus{}int}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{intlinprog}\PYG{p}{(}\PYG{n}{c}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{intcon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{A\PYGZus{}ineq\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b\PYGZus{}ineq\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lb2\PYGZus{}int}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 输出整数结果}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n第二部分（整数解）:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{exitflag2\PYGZus{}int}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{摄入量: A1=\PYGZpc{}d, A2=\PYGZpc{}d, A3=\PYGZpc{}d, A4=\PYGZpc{}d, A5=\PYGZpc{}d\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x2\PYGZus{}int}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{成本: \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval2\PYGZus{}int}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{nutrition2\PYGZus{}int}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{A}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{x2\PYGZus{}int}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{营养验证:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{6}
+\PYG{+w}{        }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{B\PYGZpc{}d: \PYGZpc{}.2f \PYGZgt{}= \PYGZpc{}.2f (\PYGZpc{}s)\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{nutrition2\PYGZus{}int}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{B}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{满足\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{不满足\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{最低摄入量验证:\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{5}
+\PYG{+w}{        }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{A\PYGZpc{}d: \PYGZpc{}d \PYGZgt{}= \PYGZpc{}.1f (\PYGZpc{}s)\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x2\PYGZus{}int}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{                }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{满足\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{不满足\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{未找到解\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
+\end{MintedVerbatim}

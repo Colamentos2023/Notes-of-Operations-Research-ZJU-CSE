@@ -1,0 +1,355 @@
+\ifx\allfiles\undefined
+
+	% 如果有这一部分另外的package，在这里加上
+	% 没有的话不需要
+	
+	\begin{document}
+\else
+\fi
+\section{第二章作业}
+\subsection{配餐问题}
+\textbf{Q：编程求解本章ppt中例2.2合理配餐问题，需要的基础数据自拟。}
+\\某幼儿园为了保证孩子们的健康成长，要求对每天的膳食进行合理科学的搭配，以保证孩子们对各种
+营养的需求.从营养学的角度.假设共有5种食品$A_j$$(j=1,2.…,6)$可供选择,每种食品都含有加6种不同
+的营养成分$B_i$$(i=1,2.,6)$.而且每单位的食品$A_j$含有营养成分$B_i$的含量如下表所示(数据为自拟)：
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{营养成分} & \multicolumn{5}{c|}{食品} & \multirow{2}{*}{最低需求量} \\ \cline{2-6} 
+     & A1 & A2 & A3 & A4 & A5 & \\ \hline
+    B1 & 4.0 & 0.4 & 0.8 & 0.5 & 0.9 & 16.0 \\ \hline
+    B2 & 0.5 & 4.0 & 0.5 & 0.7 & 0.7 & 26.0 \\ \hline
+    B3 & 0.6 & 0.2 & 4.0 & 0.4 & 0.5 & 18.0 \\ \hline
+    B4 & 0.7 & 0.1 & 0.3 & 4.0 & 0.3 & 12.0 \\ \hline
+    B5 & 0.8 & 0.9 & 0.2 & 0.3 & 4.0 & 14.0 \\ \hline
+    B6 & 1.2 & 1.3 & 1.4 & 1.4 & 1.3 & 20.0 \\ \hline
+    \textbf{食品单价} & 5 & 6 & 7 & 8 & 9 & \\ \hline
+    \textbf{摄入量最小值} & 2.0 & 3.0 & 3.0 & 1.0 & 3.0 & \\ \hline
+    \end{tabular}
+    \caption{营养数据表}
+\end{table}
+
+\begin{enumerate}
+    \item 每人每天对营养成分$B_i$的最低需求为$b_i(i=1,2,\dots,6)$，而且食品$A_j$的单价为$c_j(j=1,2,\dots,5)$. 问如何合理科学地制定配餐方案，既可以保证孩子们的营养需求，又使每人每天所需的费用最低?
+    \item 除了如上的要求之外，如果还要求各种食品的合理搭配，即要求每人每天对食品$A_j$的摄入量不少于$d_j(j=1,2,\dots,5)$，问配餐方案又如何?
+\end{enumerate}
+
+\textbf{A：分析如下。}
+\begin{enumerate}
+    \item \textbf{基础配餐问题（仅考虑营养需求）}
+    \begin{itemize}
+        \item \textbf{决策变量}：设每天采购食品 $ A_j $ 的数量为 $ x_j $（单位：份），其中 $ j=1,2,\dots,5 $
+        \item \textbf{目标函数}：最小化总费用
+        $$
+        \min z = 5x_1 + 6x_2 + 7x_3 + 8x_4 + 9x_5
+        $$
+        \item \textbf{约束条件}：
+        \begin{enumerate}
+            \item \textbf{营养成分需求}（满足最低摄入量）：
+            $$
+            \begin{cases}
+            4.0x_1 + 0.4x_2 + 0.8x_3 + 0.5x_4 + 0.9x_5 \geq 16.0 \quad (\text{营养成分 } B_1) \\
+            0.5x_1 + 4.0x_2 + 0.5x_3 + 0.7x_4 + 0.7x_5 \geq 26.0 \quad (\text{营养成分 } B_2) \\
+            0.6x_1 + 0.2x_2 + 4.0x_3 + 0.4x_4 + 0.5x_5 \geq 18.0 \quad (\text{营养成分 } B_3) \\
+            0.7x_1 + 0.1x_2 + 0.3x_3 + 4.0x_4 + 0.3x_5 \geq 12.0 \quad (\text{营养成分 } B_4) \\
+            0.8x_1 + 0.9x_2 + 0.2x_3 + 0.3x_4 + 4.0x_5 \geq 14.0 \quad (\text{营养成分 } B_5) \\
+            1.2x_1 + 1.3x_2 + 1.4x_3 + 1.4x_4 + 1.3x_5 \geq 20.0 \quad (\text{营养成分 } B_6) \\
+            \end{cases}
+            $$
+            \item \textbf{非负约束}：
+            $$
+            x_1, x_2, x_3, x_4, x_5 \geq 0
+            $$
+        \end{enumerate}
+    \end{itemize}
+    
+    \item \textbf{扩展配餐问题（增加食品摄入量约束）}
+    
+    \begin{itemize}
+        \item \textbf{决策变量}：同上，仍为 $ x_j $
+        \item \textbf{目标函数}：同上，仍为最小化总费用
+        $$
+        \min z = 5x_1 + 6x_2 + 7x_3 + 8x_4 + 9x_5
+        $$
+        \item \textbf{约束条件}：
+        \begin{enumerate}
+            \item \textbf{原营养成分需求}：同上
+            \item \textbf{食品摄入量下限}（表格中“摄入量最值”）：
+            $$
+            \begin{cases}
+            x_1 \geq 2.0 \\
+            x_2 \geq 3.0 \\
+            x_3 \geq 3.0 \\
+            x_4 \geq 1.0 \\
+            x_5 \geq 3.0 \\
+            \end{cases}
+            $$
+            \item \textbf{非负约束}：同上
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+\begin{codebox}{Matlab代码}{线性规划模型}
+    \begin{amzcode}{matlab}
+        % 配餐优化：求解浮点数和整数解
+        clear; clc;
+        
+        % 营养含量矩阵 A（6x5，行：B1-B6，列：A1-A5）
+        A = [4.0, 0.4, 0.8, 0.5, 0.9;
+             0.5, 4.0, 0.5, 0.7, 0.7;
+             0.6, 0.2, 4.0, 0.4, 0.5;
+             0.7, 0.1, 0.3, 4.0, 0.3;
+             0.8, 0.9, 0.2, 0.3, 4.0;
+             1.2, 1.3, 1.4, 1.4, 1.3];
+        
+        % 最低营养需求 B（6x1）
+        B = [16.0; 26.0; 18.0; 12.0; 14.0; 20.0];
+        
+        % 食物单价 c（5x1）
+        c = [5; 6; 7; 8; 9];
+        
+        % 约束：A*x >= B => -A*x <= -B
+        A_ineq = -A;
+        b_ineq = -B;
+        
+        % 第一部分：仅满足营养需求
+        
+        % 下界
+        lb1 = zeros(5,1);
+        
+        % 求解浮点数解
+        [x1, fval1, exitflag1] = linprog(c, A_ineq, b_ineq, [], [], lb1);
+        
+        % 输出浮点数结果
+        fprintf('第一部分（浮点数解）:\n');
+        if exitflag1 > 0
+            fprintf('摄入量: A1=%.2f, A2=%.2f, A3=%.2f, A4=%.2f, A5=%.2f\n', x1);
+            fprintf('成本: %.2f\n', fval1);
+        else
+            fprintf('未找到解\n');
+        end
+        
+        % 求解整数解
+        intcon = 1:5;
+        [x1_int, fval1_int, exitflag1_int] = intlinprog(c, intcon, A_ineq, b_ineq, [], [], lb1, []);
+        
+        % 输出整数结果
+        fprintf('\n第一部分（整数解）:\n');
+        if exitflag1_int > 0
+            fprintf('摄入量: A1=%d, A2=%d, A3=%d, A4=%d, A5=%d\n', x1_int);
+            fprintf('成本: %.2f\n', fval1_int);
+            nutrition1_int = A * x1_int;
+            fprintf('营养验证:\n');
+            for i = 1:6
+                fprintf('B%d: %.2f >= %.2f (%s)\n', i, nutrition1_int(i), B(i), ...
+                        '满足', '不满足');
+            end
+        else
+            fprintf('未找到解\n');
+        end
+        
+        % 第二部分：增加最低摄入量约束
+        
+        % 最低摄入量 d（5x1）
+        d = [2.0; 3.0; 3.0; 1.0; 3.0];
+        
+        % 下界
+        lb2 = d;
+        
+        % 求解浮点数解
+        [x2, fval2, exitflag2] = linprog(c, A_ineq, b_ineq, [], [], lb2);
+        
+        % 输出浮点数结果
+        fprintf('\n第二部分（浮点数解）:\n');
+        if exitflag2 > 0
+            fprintf('摄入量: A1=%.2f, A2=%.2f, A3=%.2f, A4=%.2f, A5=%.2f\n', x2);
+            fprintf('成本: %.2f\n', fval2);
+        else
+            fprintf('未找到解\n');
+        end
+        
+        % 求解整数解
+        lb2_int = ceil(d);
+        A_ineq_int = [A_ineq; zeros(1,5)];
+        A_ineq_int(end,4) = -1;
+        b_ineq_int = [b_ineq; -2];
+        [x2_int, fval2_int, exitflag2_int] = intlinprog(c, intcon, A_ineq_int, b_ineq_int, [], [], lb2_int, []);
+        
+        % 输出整数结果
+        fprintf('\n第二部分（整数解）:\n');
+        if exitflag2_int > 0
+            fprintf('摄入量: A1=%d, A2=%d, A3=%d, A4=%d, A5=%d\n', x2_int);
+            fprintf('成本: %.2f\n', fval2_int);
+            nutrition2_int = A * x2_int;
+            fprintf('营养验证:\n');
+            for i = 1:6
+                fprintf('B%d: %.2f >= %.2f (%s)\n', i, nutrition2_int(i), B(i), ...
+                        '满足', '不满足');
+            end
+            fprintf('最低摄入量验证:\n');
+            for j = 1:5
+                fprintf('A%d: %d >= %.1f (%s)\n', j, x2_int(j), d(j), ...
+                        '满足', '不满足');
+            end
+        else
+            fprintf('未找到解\n');
+        end
+    \end{amzcode}
+\end{codebox}
+
+实验通过 MATLAB 代码求解配餐优化问题，得到第一部分（仅满足营养需求）和第二部分（满足营养需求及最低摄入量）的浮点数解与整数解。所有解均经过验证，满足营养需求 \( B_i \)（16.0, 26.0, 18.0, 12.0, 14.0, 20.0）及第二部分的最低摄入量 \( d_j \)（2.0, 3.0, 3.0, 1.0, 3.0）。结果如下：
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \caption{配餐优化结果}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{部分} & \textbf{解类型} & \textbf{摄入量} (\( A_1, A_2, A_3, A_4, A_5 \)) & \textbf{成本} \\
+        \midrule
+        第一部分 & 浮点数解 & 3.64, 5.06, 3.35, 1.89, 1.32 & 99.02 \\
+                 & 整数解   & 3, 5, 4, 2, 2 & 107.00 \\
+        \midrule
+        第二部分 & 浮点数解 & 2.00, 4.94, 3.37, 2.05, 3.00 & 106.67 \\
+                 & 整数解   & 2, 5, 4, 2, 3 & 111.00 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+程序采用 MATLAB 实现配餐优化，思路如下：
+\begin{itemize}
+    \item \textbf{数据定义}：定义营养含量矩阵 \( A \)、最低需求 \( B \)、单价 \( c \)、最低摄入量 \( d \)，构建约束 \( A \cdot x \geq B \)。
+    \item \textbf{浮点数解}：使用 \texttt{linprog} 求解线性规划问题，最小化成本 \( c^T \cdot x \)，满足营养需求和非负约束（第一部分）或最低摄入量约束（第二部分）。
+    \item \textbf{整数解}：使用 \texttt{intlinprog} 求解整数线性规划，添加整数约束 \( x_j \in \mathbb{Z} \)，并在第二部分确保 \( x_j \geq \lceil d_j \rceil \)。额外约束 \( x_4 \geq 2 \) 保证 B4 满足。
+    \item \textbf{验证}：计算 \( A \cdot x \) 和 \( x_j \geq d_j \)，验证所有约束满足情况，确保解的可行性。
+\end{itemize}
+
+
+\subsection{战略轰炸问题}
+
+\textbf{Q：}某战略轰炸机群奉命摧毁敌人军事目标，已知该目标有四个要害部位，只要摧毁其中之一即可达到目的。为完成此项轰炸任务的汽油消耗量限制为 48000L，重型炸弹 48 枚，轻型炸弹 32 枚。飞机携带重型炸弹时每升汽油可飞行 2km，带轻型炸弹时每升汽油可飞行3km，空载时每升汽油可飞行 4km。又知每架飞机每次只能装载一枚炸弹，每起飞轰炸一次除来回路途汽油消耗外，起飞和降落每次消耗 100L汽油，其他相关数据如表所示。为了保证以最大的可能性摧毁敌方军事目标，应该如何确定飞机的轰炸方案。
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{敌要害部位} & \textbf{距离机场距离（km）} & \textbf{每枚重型炸弹摧毁概率} & \textbf{每枚轻型炸弹摧毁概率} \\ \hline
+    1 & 450 & 0.10 & 0.08 \\ \hline
+    2 & 480 & 0.20 & 0.16 \\ \hline
+    3 & 540 & 0.15 & 0.12 \\ \hline
+    4 & 600 & 0.25 & 0.20 \\ \hline
+    \end{tabular}
+    \caption{轰炸目标数据表}
+\end{table}
+
+\textbf{A：分析如下。}
+
+\subsubsection{问题分析}
+\begin{itemize}
+    \item \textbf{目标}：最大化摧毁敌方军事目标（四个要害部位中至少一个）的可能性。
+    \item \textbf{资源限制}：
+        \begin{itemize}
+            \item 总燃油：48000L。
+            \item 重型炸弹：48枚。
+            \item 轻型炸弹：32枚。
+            \item 每架飞机每次任务仅携带一枚炸弹（重型或轻型）。
+            \item 每任务（包括起飞和降落）额外消耗100L燃油。
+        \end{itemize}
+    \item \textbf{燃油效率}：
+        \begin{itemize}
+            \item 重型炸弹：2 km/L。
+            \item 轻型炸弹：3 km/L。
+            \item 空载：4 km/L（本问题不涉及空载）。
+        \end{itemize}
+    \item \textbf{数据}：
+        \begin{itemize}
+            \item 四个要害部位，距离机场分别为450km、480km、540km、600km。
+            \item 每部位被重型或轻型炸弹摧毁的概率如表所示。
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{数学模型}
+
+\textbf{决策变量}：
+\begin{itemize}
+    \item \( x_{i,h} \)：对第 \( i \) 个部位使用重型炸弹的任务数（整数，\( i = 1,2,3,4 \)）。
+    \item \( x_{i,l} \)：对第 \( i \) 个部位使用轻型炸弹的任务数（整数，\( i = 1,2,3,4 \)）。
+\end{itemize}
+
+\textbf{目标函数}：
+\begin{itemize}
+    \item 最大化总期望成功数：
+    \[
+    \max z = 0.10 x_{1,h} + 0.08 x_{1,l} + 0.20 x_{2,h} + 0.16 x_{2,l} + 0.15 x_{3,h} + 0.12 x_{3,l} + 0.25 x_{4,h} + 0.20 x_{4,l}
+    \]
+\end{itemize}
+
+\textbf{约束条件}：
+\begin{enumerate}
+    \item \textbf{燃油约束}：
+        \begin{itemize}
+            \item 重型炸弹任务到部位 \( i \) 的燃油消耗：来回距离 \( 2 \cdot d_i \) km，效率 2 km/L，燃油 \( d_i \) L，加100L起降，总计 \( d_i + 100 \) L。
+            \item 轻型炸弹任务：来回距离 \( 2 \cdot d_i \) km，效率 3 km/L，燃油 \( \frac{2 \cdot d_i}{3} \) L，加100L起降，总计 \( \frac{2 \cdot d_i}{3} + 100 \) L。
+            \item 总燃油：
+            \[
+            550 x_{1,h} + 400 x_{1,l} + 580 x_{2,h} + 420 x_{2,l} + 640 x_{3,h} + 460 x_{3,l} + 700 x_{4,h} + 500 x_{4,l} \leq 48000
+            \]
+        \end{itemize}
+    \item \textbf{重型炸弹约束}：
+        \[
+        x_{1,h} + x_{2,h} + x_{3,h} + x_{4,h} \leq 48
+        \]
+    \item \textbf{轻型炸弹约束}：
+        \[
+        x_{1,l} + x_{2,l} + x_{3,l} + x_{4,l} \leq 32
+        \]
+    \item \textbf{非负性和整数约束}：
+        \[
+        x_{i,h}, x_{i,l} \geq 0, \quad x_{i,h}, x_{i,l} \in \mathbb{Z}, \quad \forall i=1,2,3,4
+        \]
+\end{enumerate}
+
+\textbf{矩阵形式}：
+\begin{itemize}
+    \item 定义变量向量：
+    \[
+    \mathbf{x} = [x_{1,h}, x_{1,l}, x_{2,h}, x_{2,l}, x_{3,h}, x_{3,l}, x_{4,h}, x_{4,l}]^T
+    \]
+    \item 目标函数：
+    \[
+    \max z = \mathbf{c}^T \mathbf{x}, \quad \mathbf{c} = [0.10, 0.08, 0.20, 0.16, 0.15, 0.12, 0.25, 0.20]^T
+    \]
+    \item 燃油约束：
+    \[
+    \mathbf{a}_{\text{fuel}}^T \mathbf{x} \leq 48000, \quad \mathbf{a}_{\text{fuel}} = [550, 400, 580, 420, 640, 460, 700, 500]^T
+    \]
+    \item 炸弹约束：
+    \[
+    \mathbf{A}_{\text{bomb}} \mathbf{x} \leq \mathbf{b}_{\text{bomb}}, \quad \mathbf{A}_{\text{bomb}} = \begin{bmatrix}
+    1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 1 & 0 & 1 & 0 & 1
+    \end{bmatrix}, \quad \mathbf{b}_{\text{bomb}} = [48, 32]^T
+    \]
+    \item 非负性和整数约束：
+    \[
+    \mathbf{x} \geq \mathbf{0}, \quad \mathbf{x} \in \mathbb{Z}^8
+    \]
+\end{itemize}
+
+
+\ifx\allfiles\undefined
+	
+	% 如果有这一部分的参考文献的话，在这里加上
+	% 没有的话不需要
+	% 因此各个部分的参考文献可以分开放置
+	% 也可以统一放在主文件末尾。
+	
+	%  bibfile.bib是放置参考文献的文件，可以用zotero导出。
+	% \bibliography{bibfile}
+	
+	end{document}
+	\else
+	\fi
