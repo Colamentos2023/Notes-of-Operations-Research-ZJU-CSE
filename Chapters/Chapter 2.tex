@@ -524,7 +524,7 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
     
     ~\ref{2.4}\textbf{节所有上述所有过程一般上不需要我们了解的过于深入，因为有现成的计算机函数可以用，但是可以领会其思想。}
 
-    \begin{exbox}{单纯形法求解完整过程}
+    \begin{exbox}{单纯形法求解完整过程}{}
         \textbf{问题描述：}
         \[
         \text{min } z = 2x_1 + 3x_2
@@ -537,8 +537,6 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         x_1 \geq 0, \quad x_2 \text{ 自由}
         \end{cases}
         \]
-        
-        \medskip
         
         \textbf{步骤 1：转换为标准形式}
         \begin{enumerate}
@@ -554,15 +552,13 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
             \]
         \end{enumerate}
         
-        \medskip
-        
         \textbf{步骤 2：初始单纯形表}\\
         选择初始基变量 \( \{x_1, s_2\} \)，通过行变换使基变量对应的列变为单位矩阵：
         
         \[
         \begin{array}{cccccc|c}
          & x_1 & x_2^+ & x_2^- & s_1 & s_2 & \text{RHS} \\
-        \midrule
+        \hline
         x_1 & 1 & 1 & -1 & -1 & 0 & 7 \\
         s_2 & 1 & -1 & 1 & 0 & 1 & 10 \\
         \end{array}
@@ -574,19 +570,17 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         \[
         \begin{array}{cccccc|c}
          & x_1 & x_2^+ & x_2^- & s_1 & s_2 & \text{RHS} \\
-        \midrule
+        \hline
         x_1 & 1 & 1 & -1 & -1 & 0 & 7 \\
         s_2 & 0 & -2 & 2 & 1 & 1 & 3 \\
         \end{array}
         \]
         
-        \medskip
         
         \textbf{步骤 3：计算检验数}\\
         检验数公式：\( \sigma_j = c_j - c_B^T A_j \) \\
         当前基变量 \( \{x_1, s_2\} \)，\( c_B = [2, 0] \)。
         
-        \[
         \begin{align*}
         \sigma_{x_1} &= 2 - [2, 0] \begin{bmatrix}1\\0\end{bmatrix} = 0 \\
         \sigma_{x_2^+} &= 3 - [2, 0] \begin{bmatrix}1\\-2\end{bmatrix} = 1 \\
@@ -594,9 +588,7 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         \sigma_{s_1} &= 0 - [2, 0] \begin{bmatrix}-1\\1\end{bmatrix} = 2 \\
         \sigma_{s_2} &= 0 - [2, 0] \begin{bmatrix}0\\1\end{bmatrix} = 0 \\
         \end{align*}
-        \]
         
-        \medskip
         
         \textbf{步骤 4：确定进基和出基变量}
         \begin{itemize}
@@ -608,7 +600,6 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
             \end{itemize}
         \end{itemize}
         
-        \medskip
         
         \textbf{步骤 5：更新单纯形表}\\
         通过行变换使 \( x_2^- \) 对应的列变为 \( [0, 1]^T \)：
@@ -622,18 +613,16 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         \[
         \begin{array}{cccccc|c}
          & x_1 & x_2^+ & x_2^- & s_1 & s_2 & \text{RHS} \\
-        \midrule
+        \hline
         x_1 & 1 & 0 & 0 & -0.5 & 0.5 & 8.5 \\
-        x_2^{-} & 0 & -1 & 1 & 0.5 & 0.5 & 1.5 \\
+        x_2^- & 0 & -1 & 1 & 0.5 & 0.5 & 1.5 \\
         \end{array}
         \]
         
-        \medskip
         
         \textbf{步骤 6：重新计算检验数}\\
         当前基变量 \( \{x_1, x_2^-\} \)，\( c_B = [2, -3] \)。
         
-        \[
         \begin{align*}
         \sigma_{x_1} &= 2 - [2, -3] \begin{bmatrix}1\\0\end{bmatrix} = 0 \\
         \sigma_{x_2^+} &= 3 - [2, -3] \begin{bmatrix}0\\-1\end{bmatrix} = 0 \\
@@ -641,11 +630,9 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         \sigma_{s_1} &= 0 - [2, -3] \begin{bmatrix}-0.5\\0.5\end{bmatrix} = 2.5 \\
         \sigma_{s_2} &= 0 - [2, -3] \begin{bmatrix}0.5\\0.5\end{bmatrix} = 0.5 \\
         \end{align*}
-        \]
         
         \textbf{所有检验数 \( \geq 0 \)}，当前解为最优解。
         
-        \medskip
         
         \textbf{步骤 7：提取最优解}\\
         从最终单纯形表：
@@ -654,8 +641,6 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
           \item 原变量 \( x_2 = x_2^+ - x_2^- = -1.5 \)。
           \item 目标值 \( z = 2 \times 8.5 + 3 \times (-1.5) = 12.5 \)。
         \end{itemize}
-        
-        \medskip
         
         \textbf{最终答案：}
         \begin{itemize}

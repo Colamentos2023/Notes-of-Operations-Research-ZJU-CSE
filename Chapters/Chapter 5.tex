@@ -1,0 +1,114 @@
+\ifx\allfiles\undefined
+
+	% 如果有这一部分另外的package，在这里加上
+	% 没有的话不需要
+	
+	\begin{document}
+\else
+\fi
+    \chapter{非线性规划}
+    \section{非线性规划问题与数学模型}
+    \subsection{非线性规划问题的定义}
+    
+\begin{dfnbox}{非线性规划}{amznotes}
+    如果目标函数或约束条件方程中存在任何非线性因子，则问题为非线性规划。\textbf{整数规划模型}、
+\end{dfnbox}
+非线性规划具有以下几个特点：
+\begin{itemize}
+    \item 目标函数或约束条件方程中存在任何\textcolor{red}{非线性因子}，或全部为\textcolor{red}{非线性函数}:
+    \item \textcolor{red}{没有统一的、通用的解法}(这不同于线性规划，它有单纯形法作为通用解法)，目前各种解法都有自己的适用范围;
+    \item 非常难以采用解析解法，更多采用\textcolor{red}{数值解法};
+    \item 非线性规划的最优解不像线性规划那样在边界点达到，而是\textcolor{red}{有可能在可行域中任一点}达到;
+    \item 非线性规划存在\textcolor{red}{局部极值点}和\textcolor{red}{全局极值点}之分，这一点也与线性规划不同。
+\end{itemize}
+
+\begin{exbox}{资源分配问题}
+1\textbf{例：}有 A 和 B 两种资源，数量分别为 a 和 b，用于生产 n 种产品。如果 A 种资源以数量 \(x_k\)，B 种资源以数量 \(y_k\)，用于生产第 k 种产品，其收益为 \(g_k(x_k, y_k)\)，问如何分配这两种资源用于 n 种产品的生产使总收益最大？
+\\
+\textbf{解：}
+
+由题意，以 \(x_k\) 和 \(y_k\)（\(k = 1, 2, \dots, n\)）为决策变量，以生产 n 种产品的总收益为目标函数，资源的总量为约束条件，则问题的优化模型为：
+
+\[
+\max z = g_1(x_1, y_1) + g_2(x_2, y_2) + \dots + g_n(x_n, y_n)
+\]
+
+约束条件：
+
+\[
+\begin{cases}
+x_1 + x_2 + \dots + x_n = a, \\
+y_1 + y_2 + \dots + y_n = b, \\
+x_k \geq 0, \quad y_k \geq 0 \quad (k = 1, 2, \dots, n).
+\end{cases}
+\]
+\end{exbox}
+
+\begin{exbox}{最小圆盘问题}
+    1\textbf{例：}设平面上有 $m$ 个点，找覆盖这 $m$ 个点的最小圆盘。
+
+    \textbf{解：} 设 $m$ 个点为 $p_i, \, i = 1, 2, \dots, m$，则平面上任一点 $x$ 到这 $m$ 个点的距离最大者满足
+    
+    \[
+    f(x) = \max_{1 \leq i \leq m} \| x - p_i \|
+    \]
+    
+    则以 $x$ 为圆心，$f(x)$ 为半径的圆盘必覆盖这 $m$ 个点，于是问题转化为求解最小半径的圆盘问题：
+    
+    \[
+    \min_x \max_{1 \leq i \leq m} \| x - p_i \|
+    \]
+    
+    这是一个无约束的非线性规划问题。
+\end{exbox}
+
+\subsection{非线性规划问题的数学模型}
+\begin{thmbox}{一般形式}{cool}
+    \begin{align*}
+        \text{max} \quad & z = g_1(x_1, y_1) + g_2(x_2, y_2) + \cdots + g_n(x_n, y_n) \\
+        \text{subject to} \quad & \sum_{k=1}^{n} x_k = a, \\
+        & \sum_{k=1}^{n} y_k = b, \\
+        & x_k \geq 0, \ y_k \geq 0 \quad (k = 1, 2, \dots, n).
+        \end{align*}
+        
+        \begin{align*}
+        \text{min} \quad & \max_{1 \leq l \leq m} \left\{ \| x - p_l \| \right\}
+    \end{align*}
+\end{thmbox}
+\begin{thmbox}{标准模型I}{cool}
+    \begin{align*}
+        \min \quad & f(x) \\
+        \text{subject to} \quad & h_i(x) = 0, \quad i = 1, 2, \dots, m \quad \text{(m 个等式约束)} \\
+        & g_j(x) \geq 0, \quad j = 1, 2, \dots, l \quad \text{(l 个不等式约束)} \\
+        & x \in \mathbb{R}^n
+        \end{align*}
+        
+        \bigskip
+        \text{若有另一种形式，可以转化为上述形式，例如:}
+        \begin{align*}
+        \max \quad  f(x) \quad &\Rightarrow \quad \min (-f(x)) \\
+        g_j(x) \leq 0  \quad &\Rightarrow \quad -g_j(x) \geq 0
+        \end{align*}
+\end{thmbox}
+
+
+
+
+    \section{无约束非线性规划问题的解}
+    \section{约束非线性规划问题（约束极值问题）}
+    \section{案例分析}
+    
+
+\ifx\allfiles\undefined
+	
+	% 如果有这一部分的参考文献的话，在这里加上
+	% 没有的话不需要
+	% 因此各个部分的参考文献可以分开放置
+	% 也可以统一放在主文件末尾。
+	
+	%  bibfile.bib是放置参考文献的文件，可以用zotero导出。
+	% \bibliography{bibfile}
+	
+	end{document}
+	\else
+	\fi
