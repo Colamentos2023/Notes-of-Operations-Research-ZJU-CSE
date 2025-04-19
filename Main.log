@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  19 APR 2025 22:52
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  19 APR 2025 23:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1653,10 +1653,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
 \pydata@fh@_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted=\write7
 \openout7 = `_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250419225220 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted config  --timestamp 20250419230814 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_A02C83A7DBD96295BEAEFB72C2BEE2DE.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250419225220 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20250419230814 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_minted/default.style.minted) (./_minted/7324404AF635195863778AABCB5B3219.highlight.minted
 
@@ -1909,10 +1909,10 @@ Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D7FBB17D16F0957256DA46BBC96B765D;5975.
  ) 
 Here is how much of TeX's memory you used:
- 45918 strings out of 473965
- 1075866 string characters out of 5728897
- 1819852 words of memory out of 5000000
- 68011 multiletter control sequences out of 15000+600000
+ 45917 strings out of 473965
+ 1075850 string characters out of 5728897
+ 1819856 words of memory out of 5000000
+ 68010 multiletter control sequences out of 15000+600000
  565533 words of font info for 163 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  131i,18n,135p,1189b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
