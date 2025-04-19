@@ -10,10 +10,10 @@
     \chapter{线性规划}
     \section{线性规划问题}
     \subsection{线性规划问题的定义}
-    线性规划问题可以归结为\textcolor{red}{求目标函数在约束条件下的最大值问题题}。\\
+    线性规划问题可以归结为\textcolor{red}{求目标函数在约束条件下的最大值问题}。\\
     线性规划模型由以下三个基本要素构成：
     \begin{itemize}[noitemsep]
-        \item \textbf{决策变量}：决策变量是问题中要确定的未知量，决策者通过调控决变量来选取不同的方案、设计、措施以达到最优目的。
+        \item \textbf{决策变量}：决策变量是问题中要确定的未知量，决策者通过调控决策变量来选取不同的方案、设计、措施以达到最优目的。
         \item \textbf{目标函数}：目标函数通常是决策变量的函数，表达了“何为最优”的准则和目标，规定了优化问题的实际意义。
         \item \textbf{约束条件}：约束条件指决策变量取值 时受到的各种资源和条件的限制，表达了一种“有条件优化”的概念，通常为决策变量的等式或不等式方程。
     \end{itemize}
@@ -29,15 +29,15 @@
     \end{itemize}
 
     \subsection{线性规划问题的图解法求解}
-    目前，线性规划问题的求解方法主要有两种：\\
+    目前，线性规划问题的求解方法主要有两种：
     \begin{itemize}[noitemsep]
-        \item \textbf{图解法}：适用于只有两个决策变量的线性规划问题。其可行域可以在平面上画出。\\\\
-        \item \textbf{单纯形法}：适用于三个决策变量以上数决策变量的线性规划问题。\\
+        \item \textbf{图解法}：适用于只有两个决策变量的线性规划问题。其可行域可以在平面上画出。
+        \item \textbf{单纯形法}：适用于三个决策变量以上数决策变量的线性规划问题。
     \end{itemize}
     \begin{dfnbox}{解的可行域}{amznotes}
-        \dfntxt{解的可行域} \ 是满足约束条件的决策变量向量在n维空间中构成的点的集合。\\
+        \dfntxt{解的可行域} \ 是满足约束条件的决策变量向量在n维空间中构成的点的集合。
     \end{dfnbox}
-    可行域中使得目标函数达到最优的解点成为\textcolor{red}{最优解}，相应的目标函数值称为\textcolor{red}{最优值}。\\
+    可行域中使得目标函数达到最优的解点成为\textcolor{red}{最优解}，相应的目标函数值称为\textcolor{red}{最优值}。
     \\
     \textbf{求解步骤如下}：
     \begin{enumerate}
@@ -65,7 +65,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{1.png}
         \caption{例1.1.3图解}
-        \label{fig:Temporary Pavilion}
+        \label{fig:Chapter2_Temporary_Pavilion_1}
     \end{figure}
     思考：
     \begin{itemize}
@@ -73,7 +73,7 @@
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.4\textwidth]{2.png}
-            \label{fig:Temporary Pavilion}
+            \label{fig:Chapter2_Temporary_Pavilion_2}
         \end{figure}
         \item \textbf{无界解}：例如下述线性规划问题:
         \begin{align*}
@@ -85,7 +85,7 @@
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.4\textwidth]{3.png}
-            \label{fig:Temporary Pavilion}
+            \label{fig:Chapter2_Temporary_Pavilion_3}
         \end{figure}
         \item \textbf{无最优解}：若可行域为空，则无可行解，自然无最优解。
     \end{itemize}
@@ -95,11 +95,14 @@
     \begin{thmbox}{一般形式}{cool}
         特点:\textbf{目标函数}和\textbf{约束条件}都是决策变量的线性函数。
         \tcblower
-        $\max(\min)\ z= \mathop{\sum}\limits_{j = 1}^{n}{c}_{j}{x}_{j}$\\
-        s.t. $\begin{cases} \mathop{\sum }\limits_{j = 1}^{n}{a}_{ij}{x}_{j} \leq(\geq,=){b}_{i}\; & \left( {i = 1,2,\cdots ,m}\right) , \\  {x}_{j} \geq  0 & \left( {j = 1,2,\cdots ,n}\right) . \end{cases}$\\
-        \\
-        也可以表示为矩阵形式：\\
-        $\max(\min)\ z = \mathbf{c}\cdot\mathbf{x}$\\
+        $\max(\min)\ z= \mathop{\sum}\limits_{j = 1}^{n}{c}_{j}{x}_{j}$
+
+        s.t. $\begin{cases} \mathop{\sum }\limits_{j = 1}^{n}{a}_{ij}{x}_{j} \leq(\geq,=){b}_{i}\; & \left( {i = 1,2,\cdots ,m}\right) , \\  {x}_{j} \geq  0 & \left( {j = 1,2,\cdots ,n}\right) . \end{cases}$
+        
+        也可以表示为矩阵形式：
+        
+        $\max(\min)\ z = \mathbf{c}\cdot\mathbf{x}$
+
         s.t. $\begin{cases}\mathbf{A}\mathbf{x}\leq(\geq,=)\mathbf{b}, \\ \mathbf{x}\geq 0\end{cases}$\\
         其中称 $\mathbf{c} = \left( {{\mathrm{c}}_{1},{\mathrm{c}}_{2},\cdots ,{\mathrm{c}}_{\mathrm{n}}}\right)$ 为目标函数的\textbf{系数向量};\\
         称 $\mathbf{x} = {\left( {\mathrm{x}}_{1},{\mathrm{x}}_{2},\cdots ,{\mathrm{x}}_{\mathrm{n}}\right) }^{\mathrm{T}}$ 为\textbf{决策向量};\\
@@ -111,8 +114,9 @@
     \begin{thmbox}{标准形}{cool}
         为了便于研究，规定线性规划模型的标准型。
         \tcblower
-        $\max\ z = \mathbf{c}\cdot\mathbf{x}$\\
-        s.t. $\begin{cases}\mathbf{A}\mathbf{x}=\mathbf{b}, \\ \mathbf{x}\geq 0\end{cases}$\\
+        $\max\ z = \mathbf{c}\cdot\mathbf{x}$
+
+        s.t. $\begin{cases}\mathbf{A}\mathbf{x}=\mathbf{b}, \\ \mathbf{x}\geq 0\end{cases}$
     \end{thmbox}
     
     \begin{notebox}{\textbf{方法：一般形式化为标准形的方法}}
@@ -140,12 +144,10 @@
             \item $- 3 x_1 + x_2 + 2 x_3 = 5 \rightarrow - 3 x_1 + x_2 + 2\left( {{x}_4 - {x}_5}\right) = 5$
             \\其中：$x_1,x_2,x_4,x_5,x_6,x_7>=0$
         \end{enumerate}
-        此时再考虑目标函数\\
-        $\min z=-x_1+2x_2-3x_3 \rightarrow \max z'=-z=-x_1-2x_2-3x_4+3x_5+0x_6+0x_7$
+        此时再考虑目标函数
+
+        $\min z=-x_1+2x_2-3x_3 \rightarrow \max z'=-z=x_1-2x_2+3x_4-3x_5+0x_6+0x_7$
     \end{exbox}
-
-
-
 
     \section{线性规划解的基本概念与基本理论}
     \label{2.3}
@@ -165,7 +167,7 @@
         设系数矩阵 $A = {\left( {a}_{ij}\right) }_{m \times  n}$ 的秩为 $m$ ,则称 $A$ 的某个 $m \times  m$ 非奇
     异子矩阵 $B$ 为线性规划问题的一个\textbf{基}。
     \end{dfnbox}
-    不妨设 $B = {\left( {a}_{y}\right) }_{m \times  m} = \left( {\mathbf{p}}_{1},{\mathbf{p}}_{2},\cdots ,{\mathbf{p}}_{m}\right)$ \\
+    不妨设 $B = {\left( {a}_{y}\right) }_{m \times  m} = \left( {\mathbf{p}}_{1},{\mathbf{p}}_{2},\cdots ,{\mathbf{p}}_{m}\right)$
     \begin{itemize}
     \item \textbf{基向量}：向量 ${\mathbf{p}}_{j} = {\left( {a}_{1j},{a}_{2j},\cdots ,{a}_{mj}\right) }^{\mathrm{T}}\left( {j = 1,2,\cdots ,m}\right)$；
     \item \textbf{非基向量}：矩阵 $A$ 的其他列向量；
@@ -181,7 +183,7 @@
     \end{equation}
     \begin{dfnbox}{基解}{amznotes}
         在方程组 \hyperref[eq:2.1]{(2.1)} 的解中，令$x_j=0(j= m+1, m+2, \cdots , n)$，则解向量 
-        \(\mathbf{x} = (x_{1}, x_{2}, \cdots, x_{n}, \cdots, 0, 0)\) 为问题的\textbf{基解}。
+        \(\mathbf{x} = (x_{1}, x_{2}, \cdots, x_{m}, \cdots, 0, 0)\) 为问题的\textbf{基解}。
     \end{dfnbox}
     \begin{dfnbox}{基可行解、可行基}{amznotes}
         满足非负约束条件的基解称为\textbf{基可行解}，对应于基可行解的基解为\textbf{可行基}。
@@ -224,7 +226,7 @@
     \begin{dfnbox}{凸集}{amznotes}
         假设K为n维欧氏空间中的点集，如果对于任意两点，其连线上所有点均在K内，则称K为\textbf{凸集}。
     \end{dfnbox}
-    例：实心圆、实心球是凸集，空心圆、空心球不是凸集。直观地说，凸集没有凹入部分。\\
+    例：实心圆、实心球是凸集，空心圆、空心球不是凸集。直观地说，凸集没有凹入部分。
     \begin{dfnbox}{凸集的顶点}{amznotes}
         对于凸集 $K$ 中的点 $x$，如果 $x$ 不能用相异的两点 $x^{(1)}, x^{(2)} \in K$ 的凸组合表示为
 $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 1)$。则称$x$为凸集K的一个顶点
@@ -245,14 +247,16 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
             \end{itemize}
         \end{enumerate}
     \end{thmbox}
-        定理1的好处在于，凸集有很多良好的性质。\\
-        定理2对我们求解没有太大帮助。\\
-        定理3将求解最优化的可行域中无穷可解点的比较问题变成了三个定点的比较问题。\\
+        定理1的好处在于，凸集有很多良好的性质。
+
+        定理2对我们求解没有太大帮助。
+
+        定理3将求解最优化的可行域中无穷可解点的比较问题变成了三个定点的比较问题。
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.6\textwidth]{4.png}
             \caption{例如我们的可行域是上图中的这个四边形，最优解一定在这个四边形的四个顶点上，其他的可行域的点全都不必算。这样我们把无穷维（有无穷个点）的优化问题转化为有限的、可穷举的优化问题。}
-            \label{fig:Temporary Pavilion}
+            \label{fig:Chapter2_Temporary_Pavilion_4}
         \end{figure}
         总结来说，可以得到四个结论：
         \begin{enumerate}
@@ -314,9 +318,9 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
     5 \\
     7
     \end{bmatrix}
-    \]
+    \] 
     \begin{itemize}
-        \item 从系数矩阵 $A = \left( a_{ij} \right)_{m \times n}$  
+        \item 从系数矩阵 $A = \left( a_{ij} \right)_{m \times n}$
         $\left( m < n, \text{秩为} m \right)$ 总可以得到一个 $m$ 阶单位阵 $E_{m}$ 。(例如，可以通过  
         高斯消元法对系数矩阵 $A$ 进行行初等变换，得到一个 $m$ 阶单位阵 $E_{m}$ )。  
         $A\mathrm{x} = \mathrm{b} \rightarrow \left[ E_{m} \text{ 其他元素} \right] \mathrm{x'} = \mathrm{b'}$.\\
@@ -329,7 +333,7 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         \end{bmatrix}
         \]
 
-        \item 取如上 $m$ 阶单位阵 $E_{m}$ 为初始可行基，即 $B = E_{m}$, 将相应的约束方程组变为：  
+        \item 取如上 $m$ 阶单位阵 $E_{m}$ 为初始可行基，即 $B = E_{m}$, 将相应的约束方程组变为：
         ${x}_i = {b}_i - {a}_{i,m + 1}{x}_{m + 1} - \cdots - {a}_{i,n}{x}_n \quad (i = 1, 2, \cdots, m)$.  
         \\
         \[
@@ -365,7 +369,7 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
         \end{bmatrix}
         \]
 
-        \item 令方程组后面的 $n - m$ 个变量为 0, ${x}_j = 0 \quad (j = m + 1, m + 2, \ldots, n)$,  
+        \item 令方程组后面的 $n - m$ 个变量为 0, ${x}_j = 0 \quad (j = m + 1, m + 2, \ldots, n)$，
         则可得一个初始基可行解： 
         ${x}^{(0)} = \left( {x}_1^{(0)}, {x}_2^{(0)}, \ldots, {x}_m^{(0)}, 0, \ldots, 0 \right)^T = \left( {b}_1, {b}_2, \cdots, {b}_m, 0, \cdots, 0 \right)^T$.\\
         \[
@@ -406,7 +410,8 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
     \mathbf{x}^{(1)} = \left( x_1^{(1)}, x_2^{(1)}, \ldots, x_m^{(1)}, 0, \ldots, 0 \right)^T
     \]
     \end{notebox}
-    我们仍然用刚才的例子：\\
+    我们仍然用刚才的例子：
+
     \[
     A' = \begin{bmatrix}
     1 & 0 & 0 & -2 & -3 \\
@@ -506,8 +511,7 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
     \]
 
     为此，\( \sigma_j = c_j - z_j \) 的符号是判别 \( \mathbf{x}^{(1)} \) 是否为最优解的关键所在，故称之为\textcolor{red}{检验数}。于是可以得出下面的结论：
-    \begin{notebox}{\textbf{判断最优解的办法}}    
-        \\
+    \begin{notebox}{\textbf{判断最优解的办法}}
         \begin{enumerate}
             \item 如果 \( \sigma_j \leq 0 \quad (j = m+1, \cdots, n) \)，则 \( \mathbf{x}^{(1)} \) 是问题的最优解，最优值为 \( z^{(1)} \)；
             \item 如果 \( \sigma_j \leq 0 \quad (j = m+1, \cdots, n) \)，且至少存在一个 \( \sigma_{m+k} = 0 \quad (0 \leq k \leq n-m) \)，
@@ -547,8 +551,7 @@ $x = \lambda x^{(1)} + (1 - \lambda) x^{(2)} \in K$ \quad $(0 \leq \lambda \leq 
     \subsection{下料问题}
     \begin{exbox}{下料问题}{coolexample}
         某单位需要加工作 100 套工架，每套工架需用长为 2.9m，2.1m 和1.5m 的圆钢各一根，已知原材料长 7.4m，现在的问题是如何下料使得所用的原材料最省?
-        \\
-        \\
+
         解:
         简单分析，在每一根原材料上各截取一根 2.9m,2.1m 和 1.5m的圆钢做成一套工架，每根原材料剩下料头 0.9m。要完成 100 套工架，就需要用 100 根原材料，共剩余 90m 料头。
         \\若采用套截方案，则可以节省原材料。下面给出了几种可能的套截方案，如表2.1所示。\\

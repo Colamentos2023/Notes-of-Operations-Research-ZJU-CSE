@@ -36,7 +36,7 @@
     \centering
     \includegraphics[width=0.6\textwidth]{5.png}
     \caption{例1.1.3图解}
-    \label{fig:Temporary Pavilion}
+    \label{fig:Chapter3_Temporary_Pavilion_1}
 \end{figure}
 优化目标为最小化总运费，数学模型如下：
 
@@ -129,7 +129,7 @@
         \sum_{j=1}^{n} x_{ij} + x_{i,n+1} &= a_i \quad (i=1,2,\dots,m) \,, \label{eq:balance1} \\
         \sum_{i=1}^{m} x_{ij} &= b_j \quad (j=1,2,\dots,n) \,, \label{eq:balance2} \\
         \sum_{i=1}^{m} x_{i,n+1} &= \sum_{i=1}^{m} a_i - \sum_{j=1}^{n} b_j = b_{n+1} \,, \label{eq:balance3} \\
-        x_{ij}, x_{i,n+1} &\geq 0 \quad (i=1,2,\dots,m;\ j=1,2,\dots,n) \,. \label{eq:nonneg}
+        x_{ij}, x_{i,n+1} &\geq 0 \quad (i=1,2,\dots,m;\ j=1,2,\dots,n) \,. \label{eq:Chapter3_nonneg_1}
     \end{align}
     公式 \eqref{eq:balance1} 表示转化为产销平衡问题。
 \end{exbox}
@@ -137,14 +137,14 @@
     \centering
     \includegraphics[width=0.5\textwidth]{6.png}
     \caption{产大于销的情况}
-    \label{fig:Temporary Pavilion}
+    \label{fig:Chapter3_Temporary_Pavilion_2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{7.png}
     \caption{销大于产的情况}
-    \label{fig:Temporary Pavilion}
+    \label{fig:Chapter3_Temporary_Pavilion_3}
 \end{figure}
 
 \ifx\allfiles\undefined

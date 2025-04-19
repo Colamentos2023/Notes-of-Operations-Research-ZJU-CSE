@@ -55,14 +55,14 @@
     
     \textbf{解:} 根据表 4-1 的最后一栏的利润数据，生产 $A_1$ 件、$A_2$ 件能获取的总利润为 $25x_1 + 40x_2$，因此，该问题的数学模型为：
     \begin{equation}
-        \max \quad 25x_1 + 40x_2 \label{eq:obj}
+        \max \quad 25x_1 + 40x_2 \label{eq:Chapter4_obj_1}
     \end{equation}
     约束条件：
     \begin{align}
         0.3x_1 + 0.7x_2 &\leq 250 \,, \label{eq:c1} \\
         0.2x_1 + 0.1x_2 &\leq 100 \,, \label{eq:c2} \\
         0.2x_1 + 0.5x_2 &\leq 150 \,, \label{eq:c3} \\
-        x_1 \geq 0 \,, \quad x_2 &\geq 0 \,. \label{eq:nonneg}
+        x_1 \geq 0 \,, \quad x_2 &\geq 0 \,. \label{eq:Chapter4_nonneg_1}
     \end{align}
     这是一个纯整数规划问题。
     
@@ -93,7 +93,7 @@
     \]
     则所有被选择装物品的总体积为 $\sum_{j=1}^{n} v_j x_j$，总重量为 $\sum_{j=1}^{n} w_j x_j$，该问题的数学模型为：
     \begin{equation}
-        \max \sum_{j=1}^{n} w_j x_j \label{eq:obj}
+        \max \sum_{j=1}^{n} w_j x_j \label{eq:Chapter4_obj_2}
     \end{equation}
     约束条件：
     \begin{align}
@@ -124,7 +124,7 @@
         \centering
         \includegraphics[width=0.8\textwidth]{8.png}
         \caption{整数规划的四舍五入求解}
-        \label{fig:Temporary Pavilion}
+        \label{fig:Chapter4_Temporary_Pavilion_1}
     \end{figure}
     \end{exbox}
 
@@ -143,7 +143,7 @@
         \centering
         \includegraphics[width=0.5\textwidth]{9.png}
         \caption{分枝定界法过程}
-        \label{fig:Temporary Pavilion}
+        \label{fig:Chapter4_Temporary_Pavilion_2}
     \end{figure}
     \begin{exbox}{\textbf{分枝定界法}}
         1\textbf{例：}\ 考虑如下整数规划问题:
@@ -158,13 +158,13 @@
             \centering
             \includegraphics[width=0.8\textwidth]{11.png}
             \caption{问题B的图解分析}
-            \label{fig:Temporary Pavilion}
+            \label{fig:Chapter4_Temporary_Pavilion_3}
         \end{figure}
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.8\textwidth]{10.png}
             \caption{问题B的分枝}
-            \label{fig:Temporary Pavilion}
+            \label{fig:Chapter4_Temporary_Pavilion_4}
         \end{figure}
         \end{exbox}
     

@@ -1,5 +1,9 @@
 \def\allfiles{}
 \documentclass[math,code]{amznotes}
+
+% 在\usepackage{todonotes}之前添加（如果你使用了todonotes包）
+\setlength{\marginparwidth}{2cm}
+
 \usepackage{xcolor}     % color
 \usepackage{lipsum}     % filler text
 \usepackage{ulem}       % underline
@@ -10,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{mathtools} % 添加mathtools包以解决unicode-math警告
 \usepackage{hyperref}
 %\special{dvipdfmx:config z 0}   % 加快编译速度
 \usetikzlibrary{matrix,decorations.pathreplacing}
