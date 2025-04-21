@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  20 APR 2025 15:47
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  21 APR 2025 12:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1720,10 +1720,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
 \pydata@fh@_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted=\write7
 \openout7 = `_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250420154744 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted config  --timestamp 20250421125038 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_A02C83A7DBD96295BEAEFB72C2BEE2DE.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250420154744 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20250421125038 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_minted/default.style.minted) (./_minted/7324404AF635195863778AABCB5B3219.highlight.minted
 
@@ -1989,10 +1989,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 240--243
 
 [75]
 
-LaTeX Warning: Hyper reference `确定迭代步长的黄金分割法' on page 76 undefined on input line 274.
-
-
-
 [76]
 File: ./image/22.png Graphic file (type bmp)
 <./image/22.png>
@@ -2016,19 +2012,16 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: 3A4A3200001070395EF3B96D281DDFDF;6307.
  ) 
 Here is how much of TeX's memory you used:
- 47525 strings out of 473965
- 1111389 string characters out of 5728897
+ 47524 strings out of 473965
+ 1111367 string characters out of 5728897
  1839596 words of memory out of 5000000
- 69599 multiletter control sequences out of 15000+600000
+ 69598 multiletter control sequences out of 15000+600000
  565549 words of font info for 165 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  131i,18n,135p,1189b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s

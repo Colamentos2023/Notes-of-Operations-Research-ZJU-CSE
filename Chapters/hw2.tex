@@ -262,7 +262,7 @@
         \begin{itemize}
             \item 重型炸弹：2 km/L。
             \item 轻型炸弹：3 km/L。
-            \item 空载：4 km/L（本问题不涉及空载）。
+            \item 空载：4 km/L。
         \end{itemize}
     \item \textbf{数据}：
         \begin{itemize}
@@ -291,13 +291,13 @@
 \begin{enumerate}
     \item \textbf{燃油约束}：
         \begin{itemize}
-            \item 重型炸弹任务到部位 \( i \) 的燃油消耗：来回距离 \( 2 \cdot d_i \) km，效率 2 km/L，燃油 \( d_i \) L，加100L起降，总计 \( d_i + 100 \) L。
-            \item 轻型炸弹任务：来回距离 \( 2 \cdot d_i \) km，效率 3 km/L，燃油 \( \frac{2 \cdot d_i}{3} \) L，加100L起降，总计 \( \frac{2 \cdot d_i}{3} + 100 \) L。
-            \item 总燃油：
-            \[
-            550 x_{1,h} + 400 x_{1,l} + 580 x_{2,h} + 420 x_{2,l} + 640 x_{3,h} + 460 x_{3,l} + 700 x_{4,h} + 500 x_{4,l} \leq 48000
-            \]
+            \item 对部位 \( i \) 使用重型炸弹的任务：去程携带重型炸弹，距离 \( d_i \) km，效率 2 km/L，消耗 \( \frac{d_i}{2} \) L；回程空载，距离 \( d_i \) km，效率 4 km/L，消耗 \( \frac{d_i}{4} \) L；总飞行消耗 \( \frac{3 d_i}{4} \) L；加上起飞降落100L，总计 \( \frac{3 d_i}{4} + 100 \) L。
+            \item 对部位 \( i \) 使用轻型炸弹的任务：去程携带轻型炸弹，距离 \( d_i \) km，效率 3 km/L，消耗 \( \frac{d_i}{3} \) L；回程空载，距离 \( d_i \) km，效率 4 km/L，消耗 \( \frac{d_i}{4} \) L；总飞行消耗 \( \frac{7 d_i}{12} \) L；加上起飞降落100L，总计 \( \frac{7 d_i}{12} + 100 \) L。
         \end{itemize}
+        具体数值：
+        \[
+        437.5 x_{1,h} + 362.5 x_{1,l} + 460 x_{2,h} + 380 x_{2,l} + 505 x_{3,h} + 415 x_{3,l} + 550 x_{4,h} + 450 x_{4,l} \leq 48000
+        \]
     \item \textbf{重型炸弹约束}：
         \[
         x_{1,h} + x_{2,h} + x_{3,h} + x_{4,h} \leq 48
@@ -324,7 +324,7 @@
     \]
     \item 燃油约束：
     \[
-    \mathbf{a}_{\text{fuel}}^T \mathbf{x} \leq 48000, \quad \mathbf{a}_{\text{fuel}} = [550, 400, 580, 420, 640, 460, 700, 500]^T
+    \mathbf{a}_{\text{fuel}}^T \mathbf{x} \leq 48000, \quad \mathbf{a}_{\text{fuel}} = [437.5, 362.5, 460, 380, 505, 415, 550, 450]^T
     \]
     \item 炸弹约束：
     \[
