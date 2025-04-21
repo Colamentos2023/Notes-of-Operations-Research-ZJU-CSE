@@ -52,6 +52,11 @@
 \contentsline {subsubsection}{迭代法的基本步骤}{76}{Item.98}%
 \contentsline {subsubsection}{确定迭代步长的一维搜索方法}{77}{Item.106}%
 \contentsline {subsubsection}{确定迭代步长的黄金分割法（0.618法）}{79}{figure.caption.49}%
-\contentsline {section}{\numberline {5.2}无约束非线性规划问题的解}{79}{section.5.2}%
-\contentsline {section}{\numberline {5.3}约束非线性规划问题（约束极值问题）}{79}{section.5.3}%
-\contentsline {section}{\numberline {5.4}案例分析}{79}{section.5.4}%
+\contentsline {section}{\numberline {5.2}无约束非线性规划问题的解}{80}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}梯度法（最速下降法）}{80}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}共轭梯度法}{82}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}变尺度法}{84}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}约束非线性规划问题（约束极值问题）}{85}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}解析法：将约束极值问题化为无约束问题}{86}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}数值法：可行方向法}{89}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}案例分析}{89}{section.5.4}%

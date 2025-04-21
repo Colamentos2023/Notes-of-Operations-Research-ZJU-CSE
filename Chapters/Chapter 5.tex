@@ -345,10 +345,436 @@ x_k \geq 0, \quad y_k \geq 0 \quad (k = 1, 2, \dots, n).
     其中 $x_k'$ 和 $x_k''$ 分别是 $[a_{k-1}, b_{k-1}]$ 区间内的两个点，$0.382$ 和 $0.618$ 是黄金分割法的两个常数。
     可以这么理解：$x_k'$其实是$a_k$，$x_k''$其实是$b_k$，新的$\lambda_k$为$b_{k}-a_{k}$，旧的$\lambda_{k-1}$为$a_{k-1}-b_{k-1}$ 
 \end{notebox}
+总结一下，为了理清楚框架，我们通过本节学习了以下内容：
+\begin{enumerate}
+    \item \textbf{非线性规划问题的定义}
+    
+    \item \textbf{非线性规划问题的数学模型（模型 I 与模型 II 的转换）}
+    \begin{itemize}
+        \item 一般形式
+        \item 标准模型 I
+        \item 标准模型 II
+    \end{itemize}
+    
+    \item \textbf{求解非线性规划问题的方法}
+    \begin{itemize}
+        \item \textbf{解析法}
+        \begin{itemize}
+            \item 前置概念：梯度、平稳点、Hesse矩阵、正定矩阵
+            \item 定理一：极值点必要条件
+            \item 定理二：局部极值点判断的充要条件
+        \end{itemize}
+        
+        \item \textbf{数值法（下降迭代算法）}
+        \begin{enumerate}
+            \item 初值的确定
+            \item 算法的设计
+            \begin{enumerate}
+                \item 步长的确定
+                \begin{itemize}
+                    \item 恒定步长
+                    \item 变步长
+                    \item 最速下降步长
+                    \begin{enumerate}
+                        \item 一维搜索
+                        \item 黄金分割法
+                    \end{enumerate}
+                \end{itemize}
+                \item 搜索方向的确定（更为重要，后面介绍）
+            \end{enumerate}
+            \item 算法的结束条件
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+
 
 \section{无约束非线性规划问题的解}
-    \section{约束非线性规划问题（约束极值问题）}
-    \section{案例分析}
+\begin{thmbox}{无约束非线性规划}{cool}
+$$
+\min f(X) 
+$$
+\end{thmbox}
+接下来介绍无约束非线性规划的几个解决办法。关键要点是确定下降的方向$P^{(k)}$，步长的计算还是用之前的内容。
+\subsection{梯度法（最速下降法）}
+
+\begin{notebox}{\textbf{梯度法(最速下降法)}}{}\\
+    \noindent 一般性的数值法方式为
+
+    \[
+    X^{(k+1)} = X^{(k)} + \lambda_k P^{(k)} \quad \lambda_k \geq 0
+    \]
+
+    \bigskip
+    \noindent $X^{(k)}$ ——— 第 $k$ 步迭代结果
+
+    \bigskip
+    \noindent $X^{(k+1)}$ ——— 将要进行的第 $k+1$ 步迭代点
+
+    \bigskip
+    \noindent $\lambda_k$ ——— 第 $k$ 步已迭代完成的情况下，下一步的迭代步长
+
+    \bigskip
+    \noindent $P^{(k)}$ ——— 第 $k$ 步已迭代完成的情况下，下一步的搜索方向
+
+    \bigskip
+    \noindent \textbf{每次迭代的目标}：使目标函数数值每次都有所下降，即：
+
+    \[
+    f(X^{(k+1)}) < f(X^{(k)})
+    \]
+    且我们希望下降的最多。
+\end{notebox}
+我们采用的方法如下\footnote{说人话，就是每到新的一处后算出来梯度后反着下降，到下一处再算梯度，以此类推；读者可以想到这种方法虽然提升了每次下降最快的效率，但是对于全局的效率来说未必是好的——每次下降仅考虑当前点如何最快，类似于贪心算法}：
+\begin{enumerate}
+    \item 为此目标，考察 $f(X)$ 在 $X^{(k)}$ 点的泰勒级数（即在 $X^{(k)}$ 对 $f(X)$ 展开）：
+    \[
+    f(X^{(k+1)}) = f(X^{(k)} + \lambda_k P^{(k)}) \quad \text{（由一维迭代公式）}
+    \]
+    \[
+    = f(X^{(k)}) + \lambda_k \nabla f^T(X^{(k)}) P^{(k)} + o(\lambda_k),
+    \]
+    \[
+    \therefore \text{只要满足上式中间项一项 } \lambda_k \nabla f^T(X^{(k)}) P^{(k)} < 0 \text{，目标函数就是下降的，即 }\\
+     f(X^{(k+1)}) < f(X^{(k)})
+    \]
+    
+    \item 进一步，如果希望 $f(X^{(k+1)})$ 在 $f(X^{(k)})$ 的基础上下降的最多，则合适的 $P^{(k)}$，
+    
+    使泰勒展开式中间项一项 $\lambda_k \nabla f^T(X^{(k)}) P^{(k)}$ 取最大负值（此时假设 $\lambda_k$ 已选定），
+
+    为此：
+    \[
+    \because \lambda_k > 0 \quad \therefore \lambda_k \nabla f^T(X^{(k)}) P^{(k)} < 0 \Rightarrow \nabla f^T(X^{(k)}) P^{(k)} < 0,
+    \]
+
+    对于 $\nabla f^T(X^{(k)}) P^{(k)} < 0$ 来说，$\nabla f^T(X^{(k)})$ 和 $P^{(k)}$ 是两个向量（且前者已确定），
+
+    由几何学原理知道，当两个矢量大小相同，方向相反，其点积取最大负值：
+    \[
+    \therefore \text{取 } P^{(k)} = -\nabla f^T(X^{(k)}),
+    \]
+    \[
+    \therefore \nabla f^T(X^{(k)}) P^{(k)} = -\nabla f^T(X^{(k)}) \cdot \nabla f(X^{(k)}) = -\|\nabla f^T(X^{(k)})\|^2 < 0,
+    \]
+
+    即为负值，又数值最小，
+
+    \[
+    \therefore \text{当取 } P^{(k)} = -\nabla f^T(X^{(k)}) \text{ 时，} f(X^{(k+1)}) \text{ 比 } f(X^{(k)}) \text{ 下降的最多，}
+    \]
+    
+    \noindent ——称为负梯度方向。
+    \item 得到了搜索方向 $P^{(k)}$，再用一维搜索进一步求取最佳的步长 $\lambda_k$，即：\\
+    \[
+    \text{负梯度搜索方向} + \text{一维搜索步长} \quad \Rightarrow \quad \text{最速下降法}
+    \]
+\end{enumerate}
+
+\begin{notebox}{\textbf{迭代求解过程：}}{}
+\\
+    \noindent \textbf{Step 1：} 给定初始迭代点 $X^{(0)}$ 及容许精度 $\varepsilon > 0$，
+
+    \bigskip
+    \noindent 若 $\|\nabla f^T(X^{(0)})\|^2 \leq \varepsilon$，则 $X^{(0)}$ 即为近似最优解，停止迭代，
+
+    \bigskip
+    \noindent \textbf{Step 2：} 若 $\|\nabla f^T(X^{(0)})\|^2 > \varepsilon$，求步长 $\lambda_0$，并计算 $X^{(1)} = X^{(0)} - \lambda_0 \nabla f(X^{(0)})$，
+
+    \bigskip
+    \noindent \textbf{Step 3：} 当迭代到第 $k$ 步后，
+
+    \bigskip
+    \noindent 若 $\|\nabla f^T(X^{(k)})\|^2 < \varepsilon$，则 $X^{(k)}$ 即为近似最优解，
+
+    \bigskip
+    \noindent 否则，则确定下一个迭代点 $X^{(k+1)}$ 为，
+    \[
+    X^{(k+1)} = X^{(k)} - \lambda_k \nabla f(X^{(k)}),
+    \]
+
+    \noindent 并通过黄金分割法求最优的 $\lambda_k$。
+\end{notebox}
+    
+
+\subsection{共轭梯度法}
+这一方法主要解决的是正定二次函数最小问题，用代数的方法理解，我们知道任意非线性函数都可以由泰勒展开，用多项式无穷地逼近，
+可以近似到最高阶次；同理，理论上所有的非线性规划问题都可以近似成正定二次函数最小问题。接下来我们就了解共轭、正定二
+次函数最小问题的概念，以及在此基础上提出的共轭方向法，指出其不足，并了解在其基础上改进而成的共轭梯度法。\\
+\begin{dfnbox}{正交与共轭}{amznotes}
+    \begin{enumerate}
+        \item 若 $X \in R^n, Y \in R^n$，当 $X^T Y = 0$ 时，称 $X$ 与 $Y$ 正交。
+        
+        \item 若 $A$ 为 $n \times n$ 对称正定矩阵，当 $X^T A Y = 0$ 时，称 $X$ 和 $Y$ 关于 $A$ 共轭，或 $X$ 和 $Y$ 为 $A$ 共轭。
+        
+        当 $A$ 为单位矩阵时，即为 $X$ 和 $Y$ 正交，所以\textbf{正交是共轭的一种特殊情况}。
+        
+        \item 若 $A$ 为 $n \times n$ 对称正定矩阵，若非零向量 $P^{(0)}, P^{(1)}, \cdots, P^{(n)} \in R^n$，关于 $A$ 两两共轭，即：
+        \[
+        (P^{(i)})^T A (P^{(j)}) = 0, \quad i \neq j, \quad i, j = 1, 2, \cdots, n
+        \]
+        则称向量组为 $A$ 共轭。
+    \end{enumerate}
+\end{dfnbox}
+\begin{thmbox}{关于 $A$ 共轭的向量组线性无关}{cool}
+    关于 $A$ 共轭的向量组线性无关。
+\end{thmbox}
+\begin{dfnbox}{正定二次函数最小问题}{amznotes}
+    无约束极值取值问题的一个特殊情况是：
+    \[
+    \min f(X) = \frac{1}{2} X^T A X + B^T X + C,
+    \]
+    其中：$A$ 为 $n \times n$ 对称正定矩阵，$B$ 为系数向量，$C$ 为常数，
+
+    \noindent —— 称为\textbf{正定二次函数最小问题}。
+\end{dfnbox}
+\begin{thmbox}{共轭方向法}{cool}
+    设向量 $P^{(i)}, \ i=0,1,2,\cdots,n-1$ 为 $A$ 共轭，则从任一点 $X^{(0)}$ 出发，相继以
+    \[
+    P^{(0)}, P^{(1)}, \cdots, P^{(n-1)}
+    \]
+    为搜索方向的迭代算法：
+
+    \[
+    \begin{cases}
+        \min f(X^{(k)} + \lambda P^{(k)}) = f(X^{(k)} + \lambda_k P^{(k)}), \\
+        X^{(k+1)} = X^{(k)} + \lambda_k P^{(k)}
+    \end{cases}
+    \]
+
+    经 $n$ 次迭代后就能收敛于正定二次函数最小问题的极值解，
+
+    \noindent —— 称为\textbf{共轭方向法}。
+\end{thmbox}
+一般来说，共轭方向法仅具有理论分析意义，对于实际的正定二次函数极小问题求解，共轭方向法至少有二方面问题没有解决:
+\begin{enumerate}
+    \item A 共轭的搜索方向向量组理论上为\[
+    P^{(0)}, P^{(1)}, \cdots, P^{(n-1)}
+    \]
+    但实用时如何构造这n个向量，它们具有什么形式，没有说明。
+    \item 尽管在理论上只需n次迭代就能命中目标，但实际的运算误差的存在，使问题的解具有不定性。
+\end{enumerate}
+其中，第一点是致命的，使共轭方向法不具备可操作性。为此，发展了共轭方向法的一种具体算法——\textbf{共轭梯度法}。
+\\其主要特点是: 基于梯度,构造了一组可实现的共轭方向，使算法具有可操作性。共轭梯度法是一种构造性方法。
+
+\begin{notebox}{\textbf{非正定二次函数的共轭梯度法}}{}
+    \\对于更广泛的一般无约束非线性规划，
+    \[
+    \min f(X),
+    \]
+
+    \noindent 可以通过逼近当前迭代点附近是够小的邻域内进行泰勒级数近似的方式，将一般非线性函数展开成二次函数，而采用具有一定迭代精度的共轭梯度法。
+
+    \[
+    f(X^{(k+1)}) = f(X^{(k)} + \lambda_k P^{(k)}),
+    \]
+
+    \[
+    \approx f(X^{(k)}) + \lambda_k f^T(X^{(k)}) P^{(k)} + \frac{1}{2} \lambda_k^2 (P^{(k)})^T H(X^{(k)}) P^{(k)},
+    \]
+
+    \noindent “$\approx$”右边是二次函数。
+\end{notebox}
+读者可以这样理解这一方法：不同于5.1.1节，每次迭代后方向都根据梯度来进行调整，共轭梯度法是先根据梯度确定了$P^{(0)}$，再用其构建与其共轭的$P^{(1)}$，根据$P^{(1)}AP^{(0)}=0$，其中$A$和$P^{(0)}$均已知，解方程即可；之后再确定$P^{(2)}$，要求其与$P^{(0)}$和$P^{(1)}$均共轭，依次类推。\\
+
+\subsection{变尺度法}
+在前述梯度法和共轭梯度法中，确定搜索方向时充分利用了目标函数的梯度信息。假若目标函数的二阶导数信息（Hesse矩阵）也存在，我们就有理由利用二阶导数信息确定搜索方向。
+\begin{notebox}{\textbf{广义牛顿法}}{}
+    \\
+
+    一种可能是，采用
+    
+    \[
+    P^{(k)} = -H(X^{(k)})^{-1} \nabla f(X^{(k)}) 
+    \]
+    作为搜索方向，
+    
+    即
+    
+    \[
+    X^{(k+1)} = X^{(k)} + \lambda_k P^{(k)}
+    \]
+    
+    \[
+    P^{(k)} = -H(X^{(k)})^{-1} \nabla f(X^{(k)}), \quad \lambda_k = \min_\lambda f(X^{(k)} + \lambda P^{(k)})
+    \]
+    称为\textbf{广义牛顿法}。
+    
+    \[
+    P^{(k)} = -H(X^{(k)})^{-1} \nabla f(X^{(k)}) 
+    \]
+    称为$f(X)$在$X^{(k)}$的牛顿方向。
+\end{notebox}
+广义牛顿法是一个相当优秀的算法,但在应用时求 Hesse 矩阵的逆很麻烦。为了不计算 Hesse 矩阵(从而不必计算 Hesse 逆)，通过构造一个近似于 Hesse矩阵的逆矩阵来满足迭代要求。
+称为\textbf{变尺度法}。
+\\下面来讨论如何构造$H(X^{(k)})$一的近似矩阵$\overline{H^{(k)}}$。为此，提出以下要求:
+\begin{enumerate}
+    \item 每做一次迭代，目标函数应下降。
+    \item 每一步都能用现有信息确定下一个搜索方向。
+    \item 这些近似矩阵最后应收敛于解点处的 Hesse 矩阵的逆。
+\end{enumerate}
+
+\section{约束非线性规划问题（约束极值问题）}
+\begin{thmbox}{约束非线性规划}{cool}
+\[
+\min f(x)
+\]
+
+\[
+h_i(x) = 0, \quad i = 1, 2, \dots, m
+\]
+
+\[
+g_j(x) \geq 0, \quad j = 1, 2, \dots, l
+\]
+或
+
+\[
+\min f(x)
+\]
+
+\[
+g_j(x) \geq 0, \quad j = 1, 2, \dots, l
+\]
+
+\[\because
+\quad h_l(x) = 0 \iff
+\begin{cases}
+h_l(x) \geq 0 \\
+h_l(x) \leq 0
+\end{cases}
+\]
+
+\[\therefore
+\text{统一采用后一形式。}
+\]
+
+若采用集合形式，则为：
+
+\[
+\min f(x), \quad x \in K \subset \mathbb{R}^n
+\]
+
+\[
+K = \{x \mid g_j(x) \geq 0, \quad j = 1, 2, \dots, l\}
+\]
+\end{thmbox}
+求解约束极值问题要注意以下两点(原则):
+\begin{itemize}
+    \item 目标函数在每次迭代都有所下降(涉及目标函数)
+    \item 解的可行性问题，即解要在可行域中(涉及约束条件)
+\end{itemize}
+求解约束极值问题的三种主要方法:
+\begin{enumerate}
+    \item 将迭代点严格局限于可行域内
+    \item 约束极值问题化为无约束问题
+    \item 复杂约束极值问题化为简单约束问题
+\end{enumerate}
+\subsection{解析法：将约束极值问题化为无约束问题}
+拉格朗日乘子法是将约束极值问题化为无约束问题的一种方法。\\
+\begin{notebox}\textbf{{拉格朗日乘子法}}{}
+\\对于约束条件是等式的问题，例如：
+$$
+\min f(x)
+$$
+$$
+s.t. g(x)=0
+$$
+我们可以将其转化为：
+$$
+\min F(x)=f(x) + \lambda g(x)\\
+$$
+这样就变成了无约束的极值问题。
+\end{notebox}
+那么对于不等式约束条件的情况，这一思想是否还适用呢？答案是肯定的。\\
+前已述及，非线性规划问题一般难以用解析法求解。然而，经过多年的研究，还是得到了许多可以用于解析求解的理论成果，库恩-塔克条件就是其中最重要的一个。
+\begin{dfnbox}{K-T条件}{}
+设 $x^*$ 是非线性规划：
+
+\[
+\min f(x)
+\]
+
+\[
+g_j(x) \geq 0, \quad j = 1, 2, \dots, l
+\]
+的局部极小点，$f(x)$ 和 $g_j(x)$, $j = 1, 2, \dots, l$ 在点 $x^*$ 有一阶连续偏导数，而且在 $x^*$ 处所有起作用的梯度线性无关，则存在数 $\mu_1^*, \mu_2^*, \dots, \mu_l^*$ 使得：
+
+\[
+\nabla f(x^*) - \sum_{j=1}^{l} \mu_j^* \nabla g_j(x^*) = 0
+\]
+
+\[
+\mu_j^* g_j(x^*) = 0, \quad j = 1, 2, \dots, l
+\]
+
+\[
+\mu_j^* \geq 0
+\]
+
+以上称为\textbf{卡恩—塔克条件（K-T 条件）}，满足该条件的点称为\textbf{卡恩—塔克点}，$\mu_1^*, \mu_2^*, \dots, \mu_l^*$ 称为\textbf{拉格朗日（Lagrange）乘子}。
+\end{dfnbox}
+对此我们有四点说明：
+\begin{enumerate}
+    \item K-T条件为必要条件，只要x是极值点，且起作用约束的梯度线性无关，则该条件就成立。
+    \item 满足K-T 条件的并非一定是最优点。
+    \item 对于凸规划\footnote{凸规划是特别简单、特别特殊的一类，但是我们常见的问题都不属于凸规划，因此不用深究}，K-T条件不但是必要条件，而且是充分条件。
+    \item 得到的库恩塔克点须代入到约束条件$g_j(x)\geq0,j=1,2,\cdots,l$中验证是否满足。
+\end{enumerate}
+\begin{exbox}{用K-T条件求解非线性规划}{}
+\textbf{例：}若有
+$$
+\max f(x)=(x-4)^2
+$$
+$$
+1\leq x \leq 6
+$$
+\textbf{解:} 变为标准形式：
+
+\[
+\min \ f(x) = -(x-4)^2
+\]
+约束条件为：
+
+\[
+g_1(x) = x - 1 \geq 0, \quad g_2(x) = 6 - x \geq 0
+\]
+对应梯度：
+
+\[
+\nabla f(x) = -2(x - 4), \quad \nabla g_1(x) = 1, \quad \nabla g_2(x) = -1
+\]
+设K-T点为 \( x^* \)，对两个约束条件引入拉格朗日乘子 \( \mu_1, \mu_2 \)，得到K-T条件：
+
+\[
+-2(x^* - 4) - \mu_1 + \mu_2 = 0
+\]
+
+\[
+\mu_1 (x^* - 1) = 0
+\]
+
+\[
+\mu_2 (6 - x^*) = 0
+\]
+
+\[
+\mu_1 \geq 0, \ \mu_2 \geq 0
+\]
+
+解以上方程组，得到：
+\begin{itemize}
+    \item (1) \( \mu_1 > 0, \ \mu_2 > 0 \), 无解
+    \item (2) \( \mu_1 > 0, \ \mu_2 = 0 \), \( x^* = 1, f(x^*) = 9 \)
+    \item (3) \( \mu_1 = 0, \ \mu_2 = 0 \), \( x^* = 4, f(x^*) = 0 \)
+    \item (4) \( \mu_1 = 0, \ \mu_2 > 0 \), \( x^* = 6, f(x^*) = 4 \)
+\end{itemize}
+
+\textbf{结论:} 三个K-T点 \( x^* = 1, \ x^* = 4, \ x^* = 6 \)，经验证 \( 1 \leq x \leq 6 \)，都在可行域内。最大点为 \( x^* = 1, f(x^*) = 9 \)，最小点为 \( x^* = 4, f(x^*) = 0 \)。
+\end{exbox}
+
+
+\subsection{数值法：可行方向法}
+\section{案例分析}
 
 
 \ifx\allfiles\undefined
