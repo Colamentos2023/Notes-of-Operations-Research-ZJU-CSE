@@ -1,0 +1,42 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZpc{} 多阶段利润优化问题动态规划求解}
+\PYG{n+nb}{clear}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{clc}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 参数}
+\PYG{n}{n}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 阶段数}
+\PYG{n}{x1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 初始原料量}
+\PYG{n}{a}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 产品A回收率}
+\PYG{n}{b}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 产品B回收率}
+\PYG{n}{g}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{y}\PYGZca{}\PYG{l+m+mf}{0.5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 利润函数g}
+\PYG{n}{h}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{y}\PYGZca{}\PYG{l+m+mf}{0.5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 利润函数h}
+
+\PYG{c}{\PYGZpc{} 状态空间离散化}
+\PYG{n}{x\PYGZus{}max}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{x1}\PYG{p}{;}
+\PYG{n}{x\PYGZus{}grid}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mf}{0.1}\PYG{p}{:}\PYG{n}{x\PYGZus{}max}\PYG{p}{;}
+\PYG{n}{V}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{x\PYGZus{}grid}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 价值函数}
+
+\PYG{c}{\PYGZpc{} 动态规划：从后向前}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{k}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{1}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{x\PYGZus{}grid}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{x}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{x\PYGZus{}grid}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{y\PYGZus{}vals}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mf}{0.1}\PYG{p}{:}\PYG{n}{x}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 离散化y}
+\PYG{+w}{        }\PYG{n}{profits}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n+nb}{size}\PYG{p}{(}\PYG{n}{y\PYGZus{}vals}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{y\PYGZus{}vals}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{y}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{y\PYGZus{}vals}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{k}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{n}
+\PYG{+w}{                }\PYG{n}{profits}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{g}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h}\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 最后阶段}
+\PYG{+w}{            }\PYG{k}{else}
+\PYG{+w}{                }\PYG{n}{x\PYGZus{}next}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{o}{*}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{p}{[}\PYG{o}{\PYGZti{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{idx}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{min}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{x\PYGZus{}grid}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{x\PYGZus{}next}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{profits}\PYG{p}{(}\PYG{n+nb}{j}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{g}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{h}\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{V}\PYG{p}{(}\PYG{n}{idx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{end}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{        }\PYG{p}{[}\PYG{n}{V}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{k}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{idx}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{profits}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+
+\PYG{c}{\PYGZpc{} 输出结果}
+\PYG{p}{[}\PYG{n}{max\PYGZus{}profit}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{idx}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{V}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{最大总利润：\PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}profit}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{初始原料量：\PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}grid}\PYG{p}{(}\PYG{n}{idx}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}

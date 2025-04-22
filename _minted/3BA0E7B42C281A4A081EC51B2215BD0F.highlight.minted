@@ -1,0 +1,26 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZpc{} 非线性规划问题求解}
+\PYG{n+nb}{clear}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{clc}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 定义目标函数}
+\PYG{n}{fun}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYGZca{}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{o}{*}\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYGZca{}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{7}\PYG{o}{*}\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 负号转为最小化}
+
+\PYG{c}{\PYGZpc{} 初始点}
+\PYG{n}{x0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 线性约束}
+\PYG{n}{A}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{b}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{20}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 上下界}
+\PYG{n}{lb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{ub}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nb}{Inf}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{Inf}\PYG{p}{]}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 求解}
+\PYG{n}{options}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{optimoptions}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{fmincon\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Display\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{iter\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{[}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fval}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{fmincon}\PYG{p}{(}\PYG{n}{fun}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{A}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ub}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{options}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} 输出结果}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{最优促销水平：x1 = \PYGZpc{}.2f, x2 = \PYGZpc{}.2f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{最大总收入：\PYGZpc{}.2f 百万元\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{fval}\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}

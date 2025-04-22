@@ -663,13 +663,27 @@ K = \{x \mid g_j(x) \geq 0, \quad j = 1, 2, \dots, l\}
     \item 目标函数在每次迭代都有所下降(涉及目标函数)
     \item 解的可行性问题，即解要在可行域中(涉及约束条件)
 \end{itemize}
-求解约束极值问题的三种主要方法:
+求解约束极值问题的三种主要思路:
 \begin{enumerate}
-    \item 将迭代点严格局限于可行域内
-    \item 约束极值问题化为无约束问题
-    \item 复杂约束极值问题化为简单约束问题
+    \item \textbf{将迭代点严格局限于可行域内}，将迭代点序列严格控制在可行域内，从而执行的迭代过程实际上为无约束优化过程。例如：
+    \begin{itemize}
+    \item \textbf{数值法}中的\hyperref[sec:可行方向法]{可行方向法}
+    \end{itemize}
+    \item \textbf{约束极值问题化为无约束问题}，序列无约束优化方法，简称SUMT方法，又称制约函数法。该方法通过将约束项处理成制约函数项加入到目标函数中形成新的广义目标函数，从而将有约束问题化为广义目标函数下的无约束问题，再利用前述的无约束优化迭代算法求解。例如：
+    \begin{itemize}
+        \item \textbf{解析法}中的拉格朗日乘子法、\hyperref[sec:K-T条件]{K-T条件}
+        \item \textbf{数值法}中的\hyperref[sec:制约函数法]{制约函数法}，包括惩罚函数（内点法）和障碍函数（外点法）。
+    \end{itemize}
+    \item \textbf{复杂约束极值问题化为简单约束问题}，在迭代点附近的序列线性化或序列二次函数逼近方法，通过运用迭代点附近的台劳展开，将有约束的非线性规划近似为极易求解的线性规划或二次
+    规化以实现迭代求解。例如：
+    \begin{itemize}
+        \item \textbf{数值法}中的\hyperref[sec:逐次逼近类方法]{逐次逼近类方法}，包括逐次线性规划法(SLP)和逐次二次规划法(SQP)。
+    \end{itemize}
+
 \end{enumerate}
-\subsection{解析法：将约束极值问题化为无约束问题}
+
+\subsection{解析法：K-T条件}
+\label{sec:K-T条件}
 拉格朗日乘子法是将约束极值问题化为无约束问题的一种方法。\\
 \begin{notebox}\textbf{{拉格朗日乘子法}}{}
 \\对于约束条件是等式的问题，例如：
@@ -774,11 +788,360 @@ g_1(x) = x - 1 \geq 0, \quad g_2(x) = 6 - x \geq 0
 
 
 \subsection{数值法：可行方向法}
+\label{sec:可行方向法}
+考虑最小化问题：
+
+\[
+\min f(x)
+\]
+约束条件：
+
+\[
+g_j(x) \geq 0, \quad j = 1, 2, \dots, l
+\]
+
+设 \( x^{(k)} \) 是第 \( k \) 步可行解，则第 \( k+1 \) 步可行解为：
+
+\[
+x^{(k+1)} = x^{(k)} + \lambda_k D^{(k)} \in K
+\]
+其中，\( f(x^{(k+1)}) < f(x^{(k)}) \)，且 \( \lambda_k \) 为步长，\( D^{(k)} \) 为某一可行方向\footnote{和无约束相比，仅仅把P变成D了，就是可行方向}。
+
+\begin{dfnbox}{可行方向法}{}
+    所谓可行方向法，是指具有以下特点的一类数值迭代算法：
+    \begin{itemize}
+        \item 若满足迭代精度要求。
+        \[
+        \|x^{(k-1)} - x^{(k)}\| < \varepsilon_1
+        \]
+        \[
+        |f(x^{(k-1)}) - f(x^{(k)})| < \varepsilon_2
+        \]
+        则停止迭代，找到了近似最优解。
+        
+        \item 若不满足精度要求，则继续沿可行方向迭代，直到满足要求。
+    \end{itemize}
+\end{dfnbox}
+可行方向法具有三个特点：
+    \begin{enumerate}
+        \item 搜索方向为可行方向。
+        \item 迭代点序列始终在可行域内。
+        \item 目标函数值单调下降。
+    \end{enumerate}
+可以说，约束极值问题的大多数数值迭代算法具有可行方向法的特点，所以很多方法都可以归入可行方向法这一类。但是，我们通常所说的可行方向法，是指 Zoutendijk 于 1960 年提出的算法及其变形。
+\\\textbf{说明：}
+    
+在以前的算法中，搜索方向直接通过设置来确定，例如：
+\begin{enumerate}
+    \item 直接设置为负梯度方向——最速下降法。
+    \item 直接设置为牛顿方向——牛顿法、拟牛顿法、变尺度法。
+    \item 直接改为共轭方向——共轭方向法、共轭梯度法。
+    \item ……
+\end{enumerate}
+这种直接设置的方法代表了一大类算法。\\
+可行方向法的思想与直接设置的方法不同，它是通过一种 \(n\) 维线性寻优的方法求取一个最优的搜索方向，从理论上说更完美。
+\\\textbf{思路：}\\
+\begin{itemize}
+    \item 一个方程确保下降（只跟目标函数有关），另一个方程确保可行（只跟约束条件有关），关联点就是可行方向$D$；
+    \item 为了保证保险，设置一个系数$\eta<0$使得在迭代的过程中更不敏感；在此基础上用线性规划寻找最优的$\eta$
+\end{itemize}
+\begin{notebox}{\textbf{Zoutendijk 可行方向法}}{}
+    \begin{itemize}
+    \item \textbf{Zoutendijk 可行方向法:}\\
+    设 \( X^{(k)} \) 点的起作用约束集非空，为求 \( X^{(k)} \) 点的可行下降方向，可通过以下条件\footnote{第一个条件是之前提到过的向量内积为负，即解决的是下降问题；第二个条件是保证可行的问题}：
+    \[
+    \begin{cases}
+        \nabla f^T \left( X^{(k)} \right) D < 0, \\
+        \nabla g_j \left( X^{(k)} \right) D > 0 & j \in J.
+    \end{cases}
+    \]
+    
+    令 \(\eta < 0\)，则上述式化为更严格条件\footnote{想象一个在可行域边界的点，如果没有$\eta$，那么根据条件2，下降的方向就是从这一点出发向可行域内的任何方向，但是不能向外出了可行域；有了$\eta$，那么下降的方向会进一步收缩，$\eta$绝对值越大，收缩的程度越大}：
+    \[
+    \begin{cases}
+        \nabla f^T \left( X^{(k)} \right) D \leq \eta, \\
+        -\nabla g_j \left( X^{(k)} \right) D \leq \eta & j \in J.
+    \end{cases}
+    \]
+    其中 \(\eta < 0\)。
+
+    \item \textbf{最佳可行方向的求解：}
+    
+    为寻求一个最佳的可行方向（如目标函数下降最多的可行方向），对
+    \[
+    \nabla f^T \left( X^{(k)} \right) D \leq \eta \text{ 和 } \nabla g_j \left( X^{(k)} \right) D \leq \eta \quad (j \in J)
+    \]
+    沿 \(\eta\) 极小化，即：
+    
+    将“选取最佳可行方向问题”转化为对 \(\eta\) 的线性规划问题：
+    \[
+    \begin{aligned}
+        & \min_D \eta \\
+        & \text{s.t.} \quad \nabla f^T \left( X^{(k)} \right) D \leq \eta, \\
+        & \qquad -\nabla g_j \left( X^{(k)} \right) D \leq \eta \quad (j \in J), \\
+        & \qquad -1 \leq d_i \leq 1 \quad (i = 1, 2, \dots, n).
+    \end{aligned}
+    \]
+    其中 \(d_i\) 为 \(D\) 的第 \(i\) 个分量，约束 \(-1 \leq d_i \leq 1\) 用于限制 \(D\) 的大小。
+\end{itemize}
+\end{notebox}
+ 
+\subsection{数值法：制约函数法}
+\label{sec:制约函数法}
+序列无约束优化方法中常用的制约函数基本上有两类，一类为\textbf{罚函数}，又称为\textbf{外点法}\footnote{这种方法允许跑到可行域外，但是会施加惩罚，就像是开放世界冒险游戏，跑到地图外边扣血，逼着你回去！}；一类为\textbf{障碍函数}，又称为\textbf{内点法}\footnote{这是在可行域边界设立“障碍”，让你跑不出去，就相当于开放世界冒险游戏里的空气墙！}。
+\subsubsection{外点法}
+\begin{notebox}{\textbf{惩罚函数法}}{}
+    \begin{itemize}
+    \item \textbf{求解思路}
+    \\考虑约束非线性规划的原问题：
+    \[
+    \min f(x), \quad x \in R = \{ x \mid g_j(x) \geq 0, \, j = 1, 2, \ldots, l \}.
+    \]
+    
+    若能构造一个关于 \( g_j(x) \) 的函数 \(\psi(g_j(x))\)，满足：
+    \[
+    \psi(g_j(x)) = 
+    \begin{cases} 
+        0 & x \in R, \\ 
+        \infty & x \notin R,
+    \end{cases}
+    \]
+    则可将约束极值问题转化为无约束极值问题。
+    \item \textbf{复合函数的构造}
+
+    令 \(\psi(g_j(x)) \to \psi(x)\)，并定义：
+    \[
+    \Phi(x) = f(x) + \sum_{j=1}^l \psi(g_j(x)).
+    \]
+    此时，原问题的约束非线性规划可通过 \(\Phi(x)\) 化为无约束非线性规划：
+    \[
+    \min f(x), \quad x \in R \quad \Rightarrow \quad \min \Phi(x).
+    \]
+\end{itemize}
+\end{notebox}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{./image/24.png}
+    \caption{理想的罚函数}
+    \label{fig:Chapter4_Temporary_Pavilion_1}
+\end{figure}
+\begin{thmbox}{等价性验证}{}
+\textbf{等价性验证}
+    \begin{enumerate}
+        \item 当 \( x \in R \) 时，\(\min \Phi(x) = \min f(x) + 0 = \min f(x)\)。
+        \item 当 \( x \notin R \) 时，\(\min \Phi(x) = \infty\) 无解。
+    \end{enumerate}
+因此，原问题的求解等价于：
+    \[
+    \min \Phi(x).
+    \]
+\end{thmbox}
+    \textbf{脉冲函数的改进}
+
+    由于脉冲函数 \(\psi(\cdot)\) 在边界上不连续且难以实现，将其改进为具有更好可实现性和光滑性的函数：
+    \[
+    \psi(g_j(x)) = [\min(0, g_j(x))]^2 = 
+    \begin{cases} 
+        0 & x \in R, \\ 
+        (g_j(x))^2 & x \notin R.
+    \end{cases}
+    \]
+    在 \( x \notin R \) 处，函数具有二次形式的特点,如下图：
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./image/25.png}
+        \caption{改进的罚函数}
+        \label{fig:Chapter4_Temporary_Pavilion_1}
+    \end{figure}
+    \begin{notebox}{\textbf{目标函数的构造}}{}
+    \\取一个充分大的正数 \( M > 0 \)，构造新的目标函数：
+    \[
+    P(x, M) = f(x) + M \sum_{j=1}^{l} \psi(g_j(x)) = f(x) + M \sum_{j=1}^{l} [\min(0, g_j(x))]^2.
+    \]
+    此时，求解：
+    \[
+    \min P(x, M)
+    \]
+    与原问题等价。式中，\( P(x, M) \) 称为惩罚函数，第二项称为惩罚项，\( M \) 称为惩罚因子。
+    \end{notebox}
+    总之，不同于之前的方法，该方法允许“跑到可行域外”，但是，代价是什么呢？那就是惩罚函数。几点说明：
+    \begin{enumerate}
+    \item 首先
+    \begin{itemize}
+        \item 若$X$在$R$内，则$P(x,M)$变为无约束非线性规划问题；
+        \item 若$X$在$R$外，即$XR$，则$X$离$R$越远，惩罚项越大，促使下一步的选代点拉向$R$内。 
+    \end{itemize}
+    \item 随着$X$被逐渐拉向$R$，惩罚项也急剧减小。为防止惩罚项的退化(影响惩罚效果)，令惩罚因子$M$每次迭代都变化，按一定规律急速增长(从而抵消$\psi(\cdot)$的快速减小)，使得惩罚项有效。
+    \item 该方法相当于把迭代点从R外拉向R内——称为外点法，因为只对付R外的点，而对R内的点不理会。
+    \item 初始迭代点可任意选取，可在R内，也可在R外。
+\end{enumerate}
+用图片表示，可以如下所示：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{./image/26.png}
+    \caption{外点法示意图}
+    \label{fig:Chapter4_Temporary_Pavilion_1}
+\end{figure}
+
+
+\subsubsection{内点法}
+如果有把握将初始迭代点取在可行域R内，则可采用障碍函数法(内点法)来进行约束极值问题的无约束化\footnote{这一方法的主要思想是，找一个新的无约束目标函数，其中含有一个障碍项，障碍项的选取目的在于“在可行域的边界上设置一道障碍，使迭代点靠近边界时，新目标函数值迅速增长，从而阻止迭代点跑到可行域外面。”}。
+\begin{notebox}{\textbf{障碍函数法}}{}
+    \\类似于惩罚函数法，选择障碍项：
+    \[
+    \sum_{j=1}^{l} \frac{1}{g_j(x)} \quad \text{或} \quad \sum_{j=1}^{l} \log(g_j(x)),
+    \]
+    并以 \(\gamma_k\) 作为障碍因子（\(\gamma_k > 0\)），构造新的无约束目标函数：
+    \[
+    \min P(x, \gamma_k),
+    \]
+    其中
+    \[
+    P(x, \gamma_k) = f(x) + \gamma_k \sum_{j=1}^{l} \frac{1}{g_j(x)} \quad (\gamma_k > 0),
+    \]
+    或
+    \[
+    P(x, \gamma_k) = f(x) - \gamma_k \sum_{j=1}^{l} \log(g_j(x)) \quad (\gamma_k > 0).
+    \]
+    
+    当 \(x\) 接近可行域边界时，\(g_j(x) \to 0\)，从而 \(P(x, \gamma_k) \to \infty\)。
+\end{notebox}
+\textbf{说明}
+    \begin{enumerate}
+        \item 初始点必须选在可行域 \(R\) 内部，越靠近边界，障碍值越大。
+        \item 所有迭代过程都在可行域 \(R\) 内进行，相当于求解无约束非线性规划问题。
+    \end{enumerate}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{./image/27.png}
+    \caption{内点法示意图}
+    \label{fig:Chapter4_Temporary_Pavilion_1}
+\end{figure}
+
+\subsection{逐次逼近类方法}
+\label{sec:逐次逼近类方法}
+这类方法\footnote{这类方法的主要思路是，通过对非线性函数加以台劳展开，并进行逐次逼近，将复杂的非线性函数简化为线性函数或简单非线性函数，再对此线性函数求线性规划，或对简单非线性函数求非线性规划(例如二次规划)。}主要由两种，逐次线性规划法和逐次二次规划法组成。
+\subsubsection{逐次线性规划法（SLP）}
+\begin{thmbox}{\textbf{线性规划的推出}}
+针对如下问题：
+
+\[
+\min f(x), \quad g_j(x) \geq 0, \quad j = 1, 2, \dots, l
+\]
+
+设 \( x^{(k)} \) 是第 \( k \) 步选代点，则在 \( x^{(k)} \) 附近作泰勒展开：
+
+\[
+f(X) = f(X^{(k)}) + \nabla f^T(X^{(k)})(X - X^{(k)}) + o((X - X^{(k)})^2)
+\]
+
+\[
+\approx f(X^{(k)}) + \nabla f^T(X^{(k)})(X - X^{(k)})
+\]
+
+\[
+g_j(X) = g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X - X^{(k)}) + o((X - X^{(k)})^2)
+\]
+
+\[
+\approx g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X - X^{(k)})
+\]
+
+代入原非线性规划中：
+
+\[
+\min f(X^{(k)}) + \nabla f^T(X^{(k)})(X - X^{(k)}), \quad g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X - X^{(k)}) \geq 0, \quad j = 1, 2, \dots, l
+\]
+
+这就是关于 \( X \) 的线性规划。
+\end{thmbox}
+
+\textbf{说明：}
+\begin{enumerate}
+    \item 解上述线性规划，得到一个新的 \( X^{(k+1)} \)，
+    \begin{itemize}
+        \item 若 \( X^{(k+1)} \in \) 可行域 \( R \)，则可将 \( X^{(k+1)} \) 作为新点；
+        \item 若 \( X^{(k+1)} \notin R \)，则 \( X^{(k+1)} \) 为不可行点，此时应缩小步长，重新求取线性规划。
+    \end{itemize}
+    \item 在以上展开中，线性近似的前提条件是 \( X \) 距 \( X^{(k)} \) 足够近，所以为使得线性近似的误差不至太大，需要满足：
+\[
+\| X - X^{(k)} \| < \delta
+\]
+即下一个迭代点的步长应小于 \( \delta \)。
+\end{enumerate}
+
+
+\begin{notebox}{\textbf{算法流程}}{}
+\begin{enumerate}
+\item 设定初始点 \( X^{(0)} \) 和收敛精度因子 \( \epsilon > 0 \)，令 \( k = 0 \)。
+\item 计算目标函数的梯度 \( \nabla f(X^{(k)}) \) 和约束函数的梯度 \( \nabla g_j(X^{(k)}) \)。
+\item 设定步长限制 \( \sigma^{(k)} \)，解线性规划：
+
+\[
+\min f(X^{(k)}) + \nabla f^T(X^{(k)})(X - X^{(k)}), \quad g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X - X^{(k)}) \geq 0, \quad j = 1, 2, \dots, l
+\]
+
+\[
+\text{满足} \quad \| X - X^{(k)} \| < \sigma^{(k)}
+\]
+得到下一个迭代点 \( X^{(k+1)} \)。
+\end{enumerate}
+\end{notebox}
+\subsubsection{逐次二次规划法（SQP）}
+\begin{thmbox}{\textbf{二次规划的推出}}{}
+    考虑优化问题：
+    \[
+    \min f(x), \quad \text{满足约束} \quad g_j(x) \geq 0, \quad j = 1, 2, \cdots, l'
+    \]
+    
+    设 \( X^{(k)} \) 是第 \( k \) 步的迭代点，在 \( X^{(k)} \) 附近作泰勒展开：
+    
+    \begin{align*}
+    f(X) &= f(X^{(k)}) + \nabla f^T(X^{(k)})(X - X^{(k)}) \\
+    &\quad + \frac{1}{2}(X - X^{(k)})^T H(X^{(k)})(X - X^{(k)}) + o(\|X - X^{(k)}\|^2) \\
+    &\approx f(X^{(k)}) + \nabla f^T(X^{(k)})(X - X^{(k)}) \\
+    &\quad + \frac{1}{2}(X - X^{(k)})^T H(X^{(k)})(X - X^{(k)})
+    \end{align*}
+    
+    式中，\( H(X^{(k)}) \) 是在 \( X^{(k)} \) 点的Hesse矩阵。
+    
+    \begin{align*}
+    g_j(X) &= g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X - X^{(k)}) + o(\|X - X^{(k)}\|) \\
+    &\approx g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X - X^{(k)})
+    \end{align*}
+    
+    将近似表达式代入原非线性规划问题，得到：
+    
+    \begin{align*}
+    &\min_X \left[ f(X^{(k)}) + \nabla f^T(X^{(k)})(X-X^{(k)}) + \frac{1}{2}(X-X^{(k)})^T H(X^{(k)})(X-X^{(k)}) \right] \\
+    &\text{约束条件：} \quad g_j(X^{(k)}) + \nabla g_j^T(X^{(k)})(X-X^{(k)}) \geq 0, \quad j=1,2,\cdots,l'
+    \end{align*}
+    
+\end{thmbox}
+这是一个典型的二次规划（QP）问题。算法迭代流程与序列线性规划（SLP）中的流程结构相似。
+
 \section{案例分析}
-
-
+\begin{exbox}{发电机组的功率分配问题}{}
+\textbf{例：}某发电厂现有三台发电机组并联运行,每台机组的发电功率可以在30~1600kW的范围内调节,
+但功率越大,发电费用越高,试验表明,如果记三台机组的发电功率分别为$x_1,x_2,x_3$(单位:kW),
+则相应的发电费用分别为$f_1(x_1)=2x_1^2+3x_1+1$,$f_2(x_2)=x_2^2+4x_2+2$,$f_3(x_3)=x_3^2+x_3+6$
+,现要求三台发电机组的总功率为3500kW,试问各发电机组应如何分配负荷(功率)使得总
+发电费用最低?
+\\
+\textbf{解：}设三台机组的发电功率$x_1,x_2,x_3$为决策变量,以三台机组的发电总费
+用为目标函数，考虑到所需要的总功率和各机组的功率范围作为约束,建立如下的优化模型：
+$$
+\min f=f(x_1)+f(x_2)+f(x_3)
+$$
+$$
+s.t.
+\begin{cases}
+    x_1+x_2+x_3=3500 \\
+    30 \leq x_1,x_2,x_3 \leq 1600 \\
+\end{cases}
+$$
+\end{exbox}
 \ifx\allfiles\undefined
-	
 	% 如果有这一部分的参考文献的话，在这里加上
 	% 没有的话不需要
 	% 因此各个部分的参考文献可以分开放置
