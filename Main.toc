@@ -80,6 +80,12 @@
 \contentsline {section}{\numberline {6.4}案例分析}{115}{section.6.4}%
 \contentsline {chapter}{\numberline {7}动态规划}{117}{chapter.7}%
 \contentsline {section}{\numberline {7.1}动态规划问题}{117}{section.7.1}%
-\contentsline {section}{\numberline {7.2}动态规划的基本概念和定义}{117}{section.7.2}%
-\contentsline {section}{\numberline {7.3}动态规划求解方法}{117}{section.7.3}%
-\contentsline {section}{\numberline {7.4}动态规划基本方程的建立与最优性原理}{117}{section.7.4}%
+\contentsline {section}{\numberline {7.2}动态规划的基本概念和定义}{118}{section.7.2}%
+\contentsline {section}{\numberline {7.3}动态规划求解方法}{123}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}逆序方法}{123}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}顺序方法}{126}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}动态规划基本方程的建立与最优性原理}{127}{section.7.4}%
+\contentsline {chapter}{\numberline {9}图论初步}{129}{chapter.9}%
+\contentsline {section}{\numberline {9.1}图的基本概念}{129}{section.9.1}%
+\contentsline {section}{\numberline {9.2}树}{129}{section.9.2}%
+\contentsline {section}{\numberline {9.3}最短路问题}{129}{section.9.3}%

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  22 APR 2025 21:45
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  23 APR 2025 15:22
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1552,7 +1552,23 @@ LaTeX Warning: Label `dfn:amznotes' multiply defined.
 
 LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
 
-) (./Chapters/Chapter 7.aux))
+) (./Chapters/Chapter 7.aux
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+) (./Chapters/Chapter 9.aux))
 \openout1 = `Main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -1766,10 +1782,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
 \pydata@fh@_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted=\write7
 \openout7 = `_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250422214548 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted config  --timestamp 20250423152252 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_A02C83A7DBD96295BEAEFB72C2BEE2DE.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250422214548 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20250423152252 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_minted/default.style.minted) (./_minted/7324404AF635195863778AABCB5B3219.highlight.minted
 
@@ -2215,16 +2231,73 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--13
 
  []
 
-)
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--25
+
+ []
+
+File: ./image/29.png Graphic file (type bmp)
+<./image/29.png>
+
 
 [117
 
 
 
 
+]
+File: ./image/30.png Graphic file (type bmp)
+<./image/30.png>
+
+
+[118]
+
+[119]
+
+[120]
+
+[121]
+Underfull \hbox (badness 10000) in paragraph at lines 150--153
+
+ []
+
+
+
+[122]
+
+[123]
+File: ./image/29.png Graphic file (type bmp)
+<./image/29.png>
+File: ./image/31.png Graphic file (type bmp)
+<./image/31.png>
+
+
+[124]
+
+[125]
+File: ./image/32.png Graphic file (type bmp)
+<./image/32.png>
+
+
+[126]
+
+[127])
+
+[128]
+\openout2 = `"./Chapters/Chapter 9.aux"'.
+
+ (./Chapters/Chapter 9.tex
+Chapter 9.
+)
+
+[129
+
+
+
+
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
-(./Main.aux (./Chapters/Chapter 1.aux) (./Chapters/Chapter 2.aux) (./Chapters/hw2.aux) (./Chapters/Chapter 3.aux) (./Chapters/Chapter 4.aux) (./Chapters/hw4.aux) (./Chapters/Chapter 5.aux) (./Chapters/hw5.aux) (./Chapters/Chapter 6.aux) (./Chapters/Chapter 7.aux))
+(./Main.aux (./Chapters/Chapter 1.aux) (./Chapters/Chapter 2.aux) (./Chapters/hw2.aux) (./Chapters/Chapter 3.aux) (./Chapters/Chapter 4.aux) (./Chapters/hw4.aux) (./Chapters/Chapter 5.aux) (./Chapters/hw5.aux) (./Chapters/Chapter 6.aux) (./Chapters/Chapter 7.aux) (./Chapters/Chapter 9.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -2237,15 +2310,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: 5EFC949148C2FB92C9DA8F27CE7919B6;9071.
+(rerunfilecheck)             Checksum: FFA904D8FC085465907609AE792AB9C2;9596.
  ) 
 Here is how much of TeX's memory you used:
- 47872 strings out of 473965
- 1125884 string characters out of 5728897
- 1845041 words of memory out of 5000000
- 69914 multiletter control sequences out of 15000+600000
+ 47974 strings out of 473965
+ 1128075 string characters out of 5728897
+ 1872207 words of memory out of 5000000
+ 70005 multiletter control sequences out of 15000+600000
  565549 words of font info for 165 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  131i,18n,135p,1189b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Main.pdf (117 pages).
+Output written on Main.pdf (129 pages).
