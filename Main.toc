@@ -1,91 +1,104 @@
 \contentsline {chapter}{\numberline {1}引言}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}考核方式及成绩构成}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}大作业}{4}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}内容与形式}{4}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}格式}{5}{subsection.1.2.2}%
-\contentsline {chapter}{\numberline {2}线性规划}{6}{chapter.2}%
-\contentsline {section}{\numberline {2.1}线性规划问题}{6}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}线性规划问题的定义}{6}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}线性规划问题的图解法求解}{6}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}线性规划问题的数学模型}{9}{section.2.2}%
-\contentsline {section}{\numberline {2.3}线性规划解的基本概念与基本理论}{11}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}解}{11}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}基}{11}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}基解}{11}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}线性规划的几个重要定理}{13}{subsection.2.3.4}%
-\contentsline {section}{\numberline {2.4}线性规划求解的单纯形法}{15}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}初始基可行解的确定}{15}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}寻找另一个基可行解：基变换法}{17}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}最优性检验方法}{18}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}线性规划问题的灵敏度分析}{23}{section.2.5}%
-\contentsline {section}{\numberline {2.6}应用案例分析}{23}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}下料问题}{23}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}连续投资问题}{26}{subsection.2.6.2}%
-\contentsline {section}{\numberline {2.7}第二章作业}{28}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}配餐问题}{28}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}战略轰炸问题}{34}{subsection.2.7.2}%
-\contentsline {subsubsection}{问题分析}{34}{table.caption.9}%
-\contentsline {subsubsection}{数学模型}{35}{table.caption.9}%
-\contentsline {chapter}{\numberline {3}运输规划}{37}{chapter.3}%
-\contentsline {section}{\numberline {3.1}运输问题}{37}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}产销平衡}{37}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}产销不平衡}{39}{subsection.3.1.2}%
-\contentsline {chapter}{\numberline {4}整数规划}{42}{chapter.4}%
-\contentsline {section}{\numberline {4.1}整数规划问题与数学模型}{42}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}整数规划问题的定义}{42}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}整数规划问题的数学模型}{42}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}一般整数规划的求解方法—分枝定界法}{44}{section.4.2}%
-\contentsline {section}{\numberline {4.3}0-1规划及其求解方法}{52}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}0-1规划的定义和数学模型}{52}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}0-1规划的例题}{53}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}0-1规划的求解}{55}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}案例分析}{57}{section.4.4}%
-\contentsline {section}{\numberline {4.5}第四章作业}{60}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}车间生产问题（分枝定界法）}{60}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}旅行者背包问题（0-1规划）}{64}{subsection.4.5.2}%
-\contentsline {chapter}{\numberline {5}非线性规划}{70}{chapter.5}%
-\contentsline {section}{\numberline {5.1}非线性规划问题与数学模型}{70}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}非线性规划问题的定义}{70}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}非线性规划问题的数学模型}{72}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}求解非线性规划问题的解析法}{74}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}求解非线性规划问题的数值法}{76}{subsection.5.1.4}%
-\contentsline {subsubsection}{迭代法的基本步骤}{77}{Item.98}%
-\contentsline {subsubsection}{确定迭代步长的一维搜索方法}{78}{Item.106}%
-\contentsline {subsubsection}{确定迭代步长的黄金分割法（0.618法）}{80}{figure.caption.49}%
-\contentsline {section}{\numberline {5.2}无约束非线性规划问题的解}{81}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}梯度法（最速下降法）}{81}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}共轭梯度法}{83}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}变尺度法}{85}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}约束非线性规划问题（约束极值问题）}{86}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}解析法：K-T条件}{88}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}数值法：可行方向法}{90}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}数值法：制约函数法}{93}{subsection.5.3.3}%
-\contentsline {subsubsection}{外点法}{93}{subsection.5.3.3}%
-\contentsline {subsubsection}{内点法}{96}{figure.caption.52}%
-\contentsline {subsection}{\numberline {5.3.4}逐次逼近类方法}{97}{subsection.5.3.4}%
-\contentsline {subsubsection}{逐次线性规划法（SLP）}{97}{subsection.5.3.4}%
-\contentsline {subsubsection}{逐次二次规划法（SQP）}{99}{Item.157}%
-\contentsline {section}{\numberline {5.4}案例分析}{100}{section.5.4}%
-\contentsline {section}{\numberline {5.5}第五章作业}{101}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}广告促销问题}{101}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}最优利润问题}{103}{subsection.5.5.2}%
-\contentsline {chapter}{\numberline {6}目标规划}{107}{chapter.6}%
-\contentsline {section}{\numberline {6.1}目标规划问题}{107}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}单目标的目标规划}{108}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}多目标的目标规划}{110}{subsection.6.1.2}%
-\contentsline {section}{\numberline {6.2}目标规划的数学模型}{112}{section.6.2}%
-\contentsline {section}{\numberline {6.3}目标规划的求解方法}{114}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}总体思路}{114}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}序贯算法}{114}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}案例分析}{115}{section.6.4}%
-\contentsline {chapter}{\numberline {7}动态规划}{117}{chapter.7}%
-\contentsline {section}{\numberline {7.1}动态规划问题}{117}{section.7.1}%
-\contentsline {section}{\numberline {7.2}动态规划的基本概念和定义}{118}{section.7.2}%
-\contentsline {section}{\numberline {7.3}动态规划求解方法}{123}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}逆序方法}{123}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}顺序方法}{126}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}动态规划基本方程的建立与最优性原理}{127}{section.7.4}%
-\contentsline {chapter}{\numberline {9}图论初步}{129}{chapter.9}%
-\contentsline {section}{\numberline {9.1}图的基本概念}{129}{section.9.1}%
-\contentsline {section}{\numberline {9.2}树}{129}{section.9.2}%
-\contentsline {section}{\numberline {9.3}最短路问题}{129}{section.9.3}%
+\contentsline {section}{\numberline {1.1}编者说明}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}考核方式及成绩构成}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}大作业}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}内容与形式}{5}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}格式}{5}{subsection.1.3.2}%
+\contentsline {chapter}{\numberline {2}线性规划}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}线性规划问题}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}线性规划问题的定义}{7}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}线性规划问题的图解法求解}{7}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}线性规划问题的数学模型}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}线性规划解的基本概念与基本理论}{12}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}解}{12}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}基}{12}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}基解}{12}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}线性规划的几个重要定理}{14}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}线性规划求解的单纯形法}{16}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}初始基可行解的确定}{16}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}寻找另一个基可行解：基变换法}{18}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}最优性检验方法}{19}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}线性规划问题的灵敏度分析}{24}{section.2.5}%
+\contentsline {section}{\numberline {2.6}应用案例分析}{24}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}下料问题}{24}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}连续投资问题}{27}{subsection.2.6.2}%
+\contentsline {section}{\numberline {2.7}第二章作业}{29}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}配餐问题}{29}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}战略轰炸问题}{35}{subsection.2.7.2}%
+\contentsline {subsubsection}{问题分析}{35}{table.caption.9}%
+\contentsline {subsubsection}{数学模型}{36}{table.caption.9}%
+\contentsline {chapter}{\numberline {3}运输规划}{38}{chapter.3}%
+\contentsline {section}{\numberline {3.1}运输问题}{38}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}产销平衡}{38}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}产销不平衡}{40}{subsection.3.1.2}%
+\contentsline {chapter}{\numberline {4}整数规划}{43}{chapter.4}%
+\contentsline {section}{\numberline {4.1}整数规划问题与数学模型}{43}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}整数规划问题的定义}{43}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}整数规划问题的数学模型}{43}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}一般整数规划的求解方法—分枝定界法}{45}{section.4.2}%
+\contentsline {section}{\numberline {4.3}0-1规划及其求解方法}{53}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}0-1规划的定义和数学模型}{53}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}0-1规划的例题}{54}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}0-1规划的求解}{56}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}案例分析}{58}{section.4.4}%
+\contentsline {section}{\numberline {4.5}第四章作业}{61}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}车间生产问题（分枝定界法）}{61}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}旅行者背包问题（0-1规划）}{65}{subsection.4.5.2}%
+\contentsline {chapter}{\numberline {5}非线性规划}{71}{chapter.5}%
+\contentsline {section}{\numberline {5.1}非线性规划问题与数学模型}{71}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}非线性规划问题的定义}{71}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}非线性规划问题的数学模型}{73}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}求解非线性规划问题的解析法}{75}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}求解非线性规划问题的数值法}{77}{subsection.5.1.4}%
+\contentsline {subsubsection}{迭代法的基本步骤}{78}{Item.98}%
+\contentsline {subsubsection}{确定迭代步长的一维搜索方法}{79}{Item.106}%
+\contentsline {subsubsection}{确定迭代步长的黄金分割法（0.618法）}{81}{figure.caption.49}%
+\contentsline {section}{\numberline {5.2}无约束非线性规划问题的解}{82}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}梯度法（最速下降法）}{82}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}共轭梯度法}{84}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}变尺度法}{86}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}约束非线性规划问题（约束极值问题）}{87}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}解析法：K-T条件}{89}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}数值法：可行方向法}{91}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}数值法：制约函数法}{94}{subsection.5.3.3}%
+\contentsline {subsubsection}{外点法}{94}{subsection.5.3.3}%
+\contentsline {subsubsection}{内点法}{97}{figure.caption.52}%
+\contentsline {subsection}{\numberline {5.3.4}逐次逼近类方法}{98}{subsection.5.3.4}%
+\contentsline {subsubsection}{逐次线性规划法（SLP）}{98}{subsection.5.3.4}%
+\contentsline {subsubsection}{逐次二次规划法（SQP）}{100}{Item.157}%
+\contentsline {section}{\numberline {5.4}案例分析}{101}{section.5.4}%
+\contentsline {section}{\numberline {5.5}第五章作业}{102}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}广告促销问题}{102}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}最优利润问题}{104}{subsection.5.5.2}%
+\contentsline {chapter}{\numberline {6}目标规划}{108}{chapter.6}%
+\contentsline {section}{\numberline {6.1}目标规划问题}{108}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}单目标的目标规划}{109}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}多目标的目标规划}{111}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}目标规划的数学模型}{113}{section.6.2}%
+\contentsline {section}{\numberline {6.3}目标规划的求解方法}{115}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}总体思路}{115}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}序贯算法}{115}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}案例分析}{116}{section.6.4}%
+\contentsline {chapter}{\numberline {7}动态规划}{118}{chapter.7}%
+\contentsline {section}{\numberline {7.1}动态规划问题}{118}{section.7.1}%
+\contentsline {section}{\numberline {7.2}动态规划的基本概念和定义}{119}{section.7.2}%
+\contentsline {section}{\numberline {7.3}动态规划求解方法}{124}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}逆序方法}{124}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}顺序方法}{127}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}动态规划基本方程的建立与最优性原理}{128}{section.7.4}%
+\contentsline {chapter}{\numberline {9}图论初步}{130}{chapter.9}%
+\contentsline {section}{\numberline {9.1}图的基本概念}{130}{section.9.1}%
+\contentsline {section}{\numberline {9.2}树}{132}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}树和支撑树的概念}{132}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}最小支撑树问题及其求解}{134}{subsection.9.2.2}%
+\contentsline {section}{\numberline {9.3}最短路问题}{135}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}最短路问题的概念}{135}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}最短路问题的求解：Dijkstra算法}{136}{subsection.9.3.2}%
+\contentsline {subsubsection}{Dijkstra算法的前提和结果适用性}{136}{subsection.9.3.2}%
+\contentsline {subsubsection}{算法思想}{137}{figure.caption.67}%
+\contentsline {subsubsection}{算法步骤}{138}{Item.218}%
+\contentsline {section}{\numberline {9.4}第九章作业}{147}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}最小支撑树问题}{147}{subsection.9.4.1}%
+\contentsline {subsubsection}{破圈法}{147}{figure.caption.70}%
+\contentsline {subsubsection}{避圈法}{150}{figure.caption.80}%
+\contentsline {subsection}{\numberline {9.4.2}最短路问题}{154}{subsection.9.4.2}%

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  23 APR 2025 15:22
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  24 APR 2025 16:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1568,7 +1568,81 @@ LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
 
 LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
 
-) (./Chapters/Chapter 9.aux))
+) (./Chapters/Chapter 9.aux
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+) (./Chapters/hw9.aux
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `code:1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:Chapter4_Temporary_Pavilion_1' multiply defined.
+
+
+LaTeX Warning: Label `code:1' multiply defined.
+
+))
 \openout1 = `Main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -1689,14 +1763,23 @@ LaTeX Font Info:    Font shape `TU/STIXTwoMath-Regular.otf(3)/m/n' will be
 
  (./Chapters/Chapter 1.tex
 Chapter 1.
+Missing character: There is no Ծ (U+053E) in font [STIXTwoText-Regular.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no Ծ (U+053E) in font [STIXTwoText-Regular.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
+
+Overfull \hbox (3.713pt too wide) in paragraph at lines 17--18
+[]\TU/SimSun(0)/m/n/12 欢 迎 访 问 课 程 仓 库 \TU/STIXTwoText(0)/m/n/12 https://github.com/Colamentos2023/Notes-of-Operations-Research-
+ []
+
 
 
 [4
 
 
-])
+]
 
-[5]
+[5])
+
+[6]
 \openout2 = `"./Chapters/Chapter 2.aux"'.
 
  (./Chapters/Chapter 2.tex
@@ -1708,7 +1791,7 @@ LaTeX Font Warning: Font shape `TU/SimSun(0)/b/it' undefined
 
 
 
-[6
+[7
 
 
 
@@ -1718,41 +1801,41 @@ File: ./image/1.png Graphic file (type bmp)
 <./image/1.png>
 
 
-[7]
+[8]
 File: ./image/2.png Graphic file (type bmp)
 <./image/2.png>
 File: ./image/3.png Graphic file (type bmp)
 <./image/3.png>
 
 
-[8]
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 106--112
 
  []
 
 
 
-[9]
-
 [10]
 
 [11]
 
 [12]
+
+[13]
 File: ./image/4.png Graphic file (type bmp)
 <./image/4.png>
 
 
-[13]
-
 [14]
+
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 323--327
 
  []
 
 
 
-[15]
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 336--339
 
  []
@@ -1763,8 +1846,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
  []
 
 
-
-[16]
 
 [17]
 
@@ -1779,13 +1860,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
 [22]
 
 [23]
+
+[24]
 \pydata@fh@_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted=\write7
 \openout7 = `_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250423152252 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted config  --timestamp 20250424160347 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_A02C83A7DBD96295BEAEFB72C2BEE2DE.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250423152252 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20250424160347 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_minted/default.style.minted) (./_minted/7324404AF635195863778AABCB5B3219.highlight.minted
 
@@ -1804,9 +1887,9 @@ LaTeX Font Info:    Font shape `TU/STIXTwoMath-Regular.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 5.
 )
 
-[24] (./_minted/A8B8CDFEDD14E604CBFAD0074C415F5B.highlight.minted)
+[25] (./_minted/A8B8CDFEDD14E604CBFAD0074C415F5B.highlight.minted)
 
-[25]
+[26]
 Underfull \hbox (badness 10000) in paragraph at lines 791--805
 
  []
@@ -1818,22 +1901,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 791--805
 
 
 
-[26])
+[27])
 
-[27]
+[28]
 \openout2 = `./Chapters/hw2.aux'.
 
  (./Chapters/hw2.tex
 
-[28
+[29
 
 
 
 ]
 
-[29] (./_minted/C8E886F308A8543ABEF4A5D5B6962033.highlight.minted)
-
-[30]
+[30] (./_minted/C8E886F308A8543ABEF4A5D5B6962033.highlight.minted)
 
 [31]
 
@@ -1843,9 +1924,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 791--805
 
 [34]
 
-[35])
+[35]
 
-[36]
+[36])
+
+[37]
 \openout2 = `"./Chapters/Chapter 3.aux"'.
 
  (./Chapters/Chapter 3.tex
@@ -1862,44 +1945,44 @@ LaTeX Font Info:    Font shape `TU/STIXTwoMath-Regular.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 67.
 
 
-[37
+[38
 
 
 
 
 ]
 
-[38]
+[39]
 Underfull \hbox (badness 10000) in paragraph at lines 93--96
 
  []
 
 
 
-[39]
-
 [40]
+
+[41]
 File: ./image/6.png Graphic file (type bmp)
 <./image/6.png>
 File: ./image/7.png Graphic file (type bmp)
 <./image/7.png>
 )
 
-[41]
+[42]
 \openout2 = `"./Chapters/Chapter 4.aux"'.
 
  (./Chapters/Chapter 4.tex
 Chapter 4.
 
 
-[42
+[43
 
 
 
 
 ]
 
-[43]
+[44]
 File: ./image/8.png Graphic file (type bmp)
 <./image/8.png>
 
@@ -1909,14 +1992,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--129
 
 
 
-[44]
+[45]
 Underfull \hbox (badness 10000) in paragraph at lines 132--136
 
  []
 
 
 
-[45]
+[46]
 File: ./image/9.png Graphic file (type bmp)
 <./image/9.png>
 File: ./image/11.png Graphic file (type bmp)
@@ -1941,8 +2024,6 @@ File: ./image/14.png Graphic file (type bmp)
 <./image/14.png>
 
 
-[46]
-
 [47]
 
 [48]
@@ -1950,17 +2031,19 @@ File: ./image/14.png Graphic file (type bmp)
 [49]
 
 [50]
+
+[51]
 File: ./image/15.png Graphic file (type bmp)
 <./image/15.png>
 
-
-[51]
 
 [52]
 
 [53]
 
 [54]
+
+[55]
 Underfull \hbox (badness 10000) in paragraph at lines 407--408
 
  []
@@ -1969,49 +2052,49 @@ File: ./image/16.png Graphic file (type bmp)
 <./image/16.png>
 
 
-[55]
-
 [56]
 
 [57]
 
-[58])
+[58]
 
-[59]
+[59])
+
+[60]
 \openout2 = `./Chapters/hw4.aux'.
 
  (./Chapters/hw4.tex
 
-[60
+[61
 
 
 
 ] (./_minted/4374F81D66BBE432CCF1399975D25E43.highlight.minted)
 
-[61]
-
 [62]
 
 [63]
 
-[64] (./_minted/5B6C9EC0205E774AE2F3FB8D44A947A4.highlight.minted)
+[64]
 
-[65]
+[65] (./_minted/5B6C9EC0205E774AE2F3FB8D44A947A4.highlight.minted)
 
-[66] (./_minted/0FC654FE0A843AFBDDF4640BD76C1044.highlight.minted)
+[66]
 
-[67]
+[67] (./_minted/0FC654FE0A843AFBDDF4640BD76C1044.highlight.minted)
 
-[68])
+[68]
 
-[69]
+[69])
+
+[70]
 \openout2 = `"./Chapters/Chapter 5.aux"'.
 
  (./Chapters/Chapter 5.tex
 Chapter 5.
 
 
-[70
+[71
 
 
 
@@ -2025,46 +2108,46 @@ File: image/18.png Graphic file (type bmp)
 <image/18.png>
 
 
-[71]
-
 [72]
+
+[73]
 
 Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before break' or set page breaks manually on input line 111.
 
 
 
-[73]
-
 [74]
+
+[75]
 File: image/20.png Graphic file (type bmp)
 <image/20.png>
 File: image/21.png Graphic file (type bmp)
 <image/21.png>
 
 
-[75]
+[76]
 Underfull \hbox (badness 10000) in paragraph at lines 240--243
 
  []
 
 
 
-[76]
-
 [77]
+
+[78]
 File: ./image/22.png Graphic file (type bmp)
 <./image/22.png>
 File: ./image/23.png Graphic file (type bmp)
 <./image/23.png>
 
 
-[78]
-
 [79]
 
 [80]
 
 [81]
+
+[82]
 Overfull \hbox (49.85597pt too wide) detected at line 439
 [][][][][][][][][][][][][] [] [][][] [][][][][] [] [][][][][]
  []
@@ -2076,16 +2159,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 467--468
 
 
 
-[82]
+[83]
 Underfull \hbox (badness 10000) in paragraph at lines 500--517
 
  []
 
 
 
-[83]
-
 [84]
+
+[85]
 Underfull \hbox (badness 10000) in paragraph at lines 577--578
 
  []
@@ -2097,83 +2180,83 @@ Underfull \hbox (badness 10000) in paragraph at lines 581--583
 
 
 
-[85]
-
 [86]
 
 [87]
+
+[88]
 Underfull \hbox (badness 10000) in paragraph at lines 687--701
 
  []
 
 
 
-[88]
-
 [89]
 
 [90]
+
+[91]
 Underfull \hbox (badness 10000) in paragraph at lines 841--845
 
  []
 
 
 
-[91]
-
 [92]
+
+[93]
 File: ./image/24.png Graphic file (type bmp)
 <./image/24.png>
 
 
-[93]
+[94]
 File: ./image/25.png Graphic file (type bmp)
 <./image/25.png>
 
 
-[94]
+[95]
 File: ./image/26.png Graphic file (type bmp)
 <./image/26.png>
 
 
-[95]
-
 [96]
+
+[97]
 File: ./image/27.png Graphic file (type bmp)
 <./image/27.png>
 
 
-[97]
+[98]
 Overfull \hbox (22.93562pt too wide) detected at line 1082
 [] [][][][][] [] [][][][][][][][][] [] [][][][]  [][][][][][] [] [][][][][][][][][] [] [][][] [] [][]  [] [] [][] [][] [] [] []
  []
 
 
 
-[98]
+[99]
 
-[99])
+[100])
 
-[100]
+[101]
 \openout2 = `./Chapters/hw5.aux'.
 
  (./Chapters/hw5.tex (./_minted/3BA0E7B42C281A4A081EC51B2215BD0F.highlight.minted)
 
-[101
+[102
 
 
 
 ]
 
-[102]
+[103]
 
-[103] (./_minted/61E6B425D5302BD7854B5FE0575DA6D9.highlight.minted)
+[104] (./_minted/61E6B425D5302BD7854B5FE0575DA6D9.highlight.minted)
 
-[104]
+[105]
 
-[105])
+[106])
 
-[106]
+[107]
 \openout2 = `"./Chapters/Chapter 6.aux"'.
 
  (./Chapters/Chapter 6.tex
@@ -2185,20 +2268,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--20
 
 
 
-[107
+[108
 
 
 
 
 ]
 
-[108]
-
 [109]
 
 [110]
 
 [111]
+
+[112]
 Underfull \hbox (badness 10000) in paragraph at lines 213--215
 
  []
@@ -2210,18 +2293,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
 
 
-[112]
-
 [113]
+
+[114]
 File: ./image/28.png Graphic file (type bmp)
 <./image/28.png>
 
 
-[114]
+[115]
 
-[115])
+[116])
 
-[116]
+[117]
 \openout2 = `"./Chapters/Chapter 7.aux"'.
 
  (./Chapters/Chapter 7.tex
@@ -2240,7 +2323,7 @@ File: ./image/29.png Graphic file (type bmp)
 <./image/29.png>
 
 
-[117
+[118
 
 
 
@@ -2250,54 +2333,185 @@ File: ./image/30.png Graphic file (type bmp)
 <./image/30.png>
 
 
-[118]
-
 [119]
 
 [120]
 
 [121]
+
+[122]
 Underfull \hbox (badness 10000) in paragraph at lines 150--153
 
  []
 
 
 
-[122]
-
 [123]
+
+[124]
 File: ./image/29.png Graphic file (type bmp)
 <./image/29.png>
 File: ./image/31.png Graphic file (type bmp)
 <./image/31.png>
 
 
-[124]
-
 [125]
+
+[126]
 File: ./image/32.png Graphic file (type bmp)
 <./image/32.png>
 
 
-[126]
+[127]
 
-[127])
+[128])
 
-[128]
+[129]
 \openout2 = `"./Chapters/Chapter 9.aux"'.
 
  (./Chapters/Chapter 9.tex
 Chapter 9.
+
+
+[130
+
+
+
+
+]
+
+[131]
+
+[132]
+File: ./image/33.png Graphic file (type bmp)
+<./image/33.png>
+File: ./image/34.png Graphic file (type bmp)
+<./image/34.png>
+
+
+[133]
+File: ./image/35.png Graphic file (type bmp)
+<./image/35.png>
+File: ./image/36.png Graphic file (type bmp)
+<./image/36.png>
+File: ./image/37.png Graphic file (type bmp)
+<./image/37.png>
+
+
+[134]
+
+[135]
+File: ./image/38.png Graphic file (type bmp)
+<./image/38.png>
+File: ./image/39.png Graphic file (type bmp)
+<./image/39.png>
+
+
+[136]
+
+[137]
+
+[138]
+File: ./image/38.png Graphic file (type bmp)
+<./image/38.png>
+
+Overfull \hbox (23.16083pt too wide) detected at line 358
+[][][][][][] [] [][] [][][][][] [] [][] [][][][][] [] [][] [][][][][] [] [][][][][] [] [][][][][] [] [][][][][] [] [][][][][] [] [][][]
+ []
+
+
+
+[139]
+
+[140]
+
+[141]
+
+[142]
+
+[143]
+
+[144]
+File: image/32.png Graphic file (type bmp)
+<image/32.png>
+File: image/40.png Graphic file (type bmp)
+<image/40.png>
 )
 
-[129
+[145]
+
+[146]
+\openout2 = `./Chapters/hw9.aux'.
+
+ (./Chapters/hw9.tex
+File: ./image/41.png Graphic file (type bmp)
+<./image/41.png>
+File: ./hw9_image/1.png Graphic file (type bmp)
+<./hw9_image/1.png>
+File: ./hw9_image/2.png Graphic file (type bmp)
+<./hw9_image/2.png>
+File: ./hw9_image/3.png Graphic file (type bmp)
+<./hw9_image/3.png>
+
+
+[147
 
 
 
+]
+File: ./hw9_image/4.png Graphic file (type bmp)
+<./hw9_image/4.png>
+File: ./hw9_image/5.png Graphic file (type bmp)
+<./hw9_image/5.png>
+File: ./hw9_image/6.png Graphic file (type bmp)
+<./hw9_image/6.png>
+File: ./hw9_image/7.png Graphic file (type bmp)
+<./hw9_image/7.png>
 
-] 
+
+[148]
+File: ./hw9_image/8.png Graphic file (type bmp)
+<./hw9_image/8.png>
+File: ./hw9_image/9.png Graphic file (type bmp)
+<./hw9_image/9.png>
+File: ./hw9_image/10.png Graphic file (type bmp)
+<./hw9_image/10.png>
+
+
+[149]
+File: ./hw9_image/11.png Graphic file (type bmp)
+<./hw9_image/11.png>
+ (./_minted/80D6F12F2669C9CCD0688785EB644A5A.highlight.minted)
+
+[150]
+
+[151]
+
+[152]
+File: ./hw9_image/12.png Graphic file (type bmp)
+<./hw9_image/12.png>
+
+
+[153]
+File: ./image/42.png Graphic file (type bmp)
+<./image/42.png>
+
+
+[154]
+
+[155]
+
+[156]
+
+[157]
+
+[158] (./_minted/ACCB2A5D3B2F000A4C895814DEBD6811.highlight.minted)
+
+[159])
+
+[160] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
-(./Main.aux (./Chapters/Chapter 1.aux) (./Chapters/Chapter 2.aux) (./Chapters/hw2.aux) (./Chapters/Chapter 3.aux) (./Chapters/Chapter 4.aux) (./Chapters/hw4.aux) (./Chapters/Chapter 5.aux) (./Chapters/hw5.aux) (./Chapters/Chapter 6.aux) (./Chapters/Chapter 7.aux) (./Chapters/Chapter 9.aux))
+(./Main.aux (./Chapters/Chapter 1.aux) (./Chapters/Chapter 2.aux) (./Chapters/hw2.aux) (./Chapters/Chapter 3.aux) (./Chapters/Chapter 4.aux) (./Chapters/hw4.aux) (./Chapters/Chapter 5.aux) (./Chapters/hw5.aux) (./Chapters/Chapter 6.aux) (./Chapters/Chapter 7.aux) (./Chapters/Chapter 9.aux) (./Chapters/hw9.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -2310,15 +2524,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: FFA904D8FC085465907609AE792AB9C2;9596.
+(rerunfilecheck)             Checksum: E6D4C6FB68FB52516B7FFED14E485B8D;10590.
  ) 
 Here is how much of TeX's memory you used:
- 47974 strings out of 473965
- 1128075 string characters out of 5728897
- 1872207 words of memory out of 5000000
- 70005 multiletter control sequences out of 15000+600000
- 565549 words of font info for 165 fonts, out of 8000000 for 9000
+ 48376 strings out of 473965
+ 1141724 string characters out of 5728897
+ 1941128 words of memory out of 5000000
+ 70382 multiletter control sequences out of 15000+600000
+ 565557 words of font info for 166 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  131i,18n,135p,1189b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Main.pdf (129 pages).
+Output written on Main.pdf (160 pages).
