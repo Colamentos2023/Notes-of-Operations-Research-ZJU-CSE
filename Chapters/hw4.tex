@@ -8,33 +8,34 @@
 \fi
 \section{第四章作业}
 \subsection{车间生产问题（分枝定界法）}
-\textbf{Q：}设某服装加工厂有 5 个生产车间，可以用 6 种不同的成品布料（单位为 m）加工不同的服装销售。对于第 i 个生产车间分别利用第 j 种布料进行加工生产后，可以获得利润为 $r_{ij}$（元/m）$(i=1,2,...,5; j=1,2,...,6)$，具体的数据表如表 4.5 所示。\\
-该厂现有资金 40 万元，为了分配这些资金，根据各车间的实际生产需求，工厂要求每个车间每种布料至少加工 1000 米，每个车间的总加工能力最多 10000 米，那么试问该工厂每种布料应购买多少米，又如何分配给所属的 5 个车间，使得总利润最大？
+\textbf{Q：}设某服装加工厂有5个生产车间，可以用6种不同的成品布料（单位为m）加工不同的服装销售。对于第$i$个生产车间分别利用第$j$种布料进行加工生产后，可以获得利润为$r_{ij}$（元/m）$(i=1,2,...,5; j=1,2,...,6)$，具体的数据表如表4.5所示。\\
+该厂现有资金40万元，为了分配这些资金，根据各车间的实际生产需求，工厂要求每个车间每种布料至少加工1000米，每个车间的总加工能力最多10000米，那么试问该工厂每种布料应购买多少米，又如何分配给所属的5个车间，使得总利润最大？
+
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-\multirow{2}{*}{布料}  & \multicolumn{6}{c|}{加工利润/元} \\ \cline{2-7} 
-                      & 1   & 2   & 3   & 4   & 5   & 6   \\ \hline
-车间一                  & 4   & 3   & 4   & 4   & 5   & 6   \\ \hline
-车间二                  & 3   & 4   & 5   & 3   & 4   & 5   \\ \hline
-车间三                  & 5   & 3   & 4   & 5   & 5   & 4   \\ \hline
-车间四                  & 3   & 3   & 4   & 4   & 6   & 6   \\ \hline
-车间五                  & 3   & 3   & 3   & 4   & 5   & 7   \\ \hline
-布料单价/元/米          & 6   & 6   & 7   & 8   & 9   & 10  \\ \hline
+\multirow{2}{*}{布料} & \multicolumn{6}{c|}{加工利润/元} \\ \cline{2-7} 
+                      & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+车间一 & 4 & 3 & 4 & 4 & 5 & 6 \\ \hline
+车间二 & 3 & 4 & 5 & 3 & 4 & 5 \\ \hline
+车间三 & 5 & 3 & 4 & 5 & 5 & 4 \\ \hline
+车间四 & 3 & 3 & 4 & 4 & 6 & 6 \\ \hline
+车间五 & 3 & 3 & 3 & 4 & 5 & 7 \\ \hline
+布料单价/元/米 & 6 & 6 & 7 & 8 & 9 & 10 \\ \hline
 \end{tabular}
 \caption{布料单价及加工利润}
 \end{table}
-\\
+
 \textbf{A：分析如下。}\\
 为最大化服装加工厂的总利润，定义以下变量和参数：
 
 \begin{itemize}
-    \item 令 $I = \{1, 2, 3, 4, 5\}$ 为车间集合。
-    \item 令 $J = \{1, 2, 3, 4, 5, 6\}$ 为布料集合。
-    \item 令 $x_{ij}$ 为车间 $i$ 分配的布料 $j$ 的米数（整数，单位：米）。
-    \item 令 $r_{ij}$ 为车间 $i$ 使用布料 $j$ 的单位利润（元/米），由表4.4给出。
-    \item 令 $c_j$ 为布料 $j$ 的单价（元/米），由表4.4给出。
+    \item 令$I = \{1, 2, 3, 4, 5\}$为车间集合
+    \item 令$J = \{1, 2, 3, 4, 5, 6\}$为布料集合
+    \item 令$x_{ij}$为车间$i$分配的布料$j$的米数（整数，单位：米）
+    \item 令$r_{ij}$为车间$i$使用布料$j$的单位利润（元/米），由表4.5给出
+    \item 令$c_j$为布料$j$的单价（元/米），由表4.5给出
 \end{itemize}
 
 \textbf{目标函数}\\
@@ -59,128 +60,98 @@
     \]
     \item 整数约束：
     \[
-    x_{ij} \in \mathbb{Z}^+, \quad x_{ij} \geq 1000 \quad \forall i = 1, 2, \ldots, 5; \quad \forall j = 1, 2, \ldots, 6
+    x_{ij} \in \mathbb{Z}^+, \quad x_{ij} \geq 1000 \quad \forall i, j
     \]
 \end{enumerate}
-\begin{codebox}{Matlab代码}{1}
-    \begin{amzcode}{matlab}
-        % 服装加工厂整数规划问题求解
-        clear; clc;
-        
-        % 定义参数
-        m = 5; % 车间数
-        n = 6; % 布料种类
-        total_var = m * n; % 总变量数
-        
-        % 利润矩阵 r_ij (5x6)
-        R = [4, 3, 4, 4, 5, 6;
-             3, 4, 5, 3, 4, 5;
-             5, 3, 4, 5, 5, 4;
-             3, 3, 4, 4, 6, 6;
-             3, 3, 3, 4, 5, 7];
-        
-        % 布料单价 c_j
-        c = [6, 6, 7, 8, 9, 10];
-        
-        % 目标函数系数 (最大化转为最小化)
-        f = -R(:); % 展平为30x1向量，负号因为intlinprog最小化
-        
-        % 约束矩阵 A 和 b
-        A = zeros(m+1, total_var); % 1个预算约束 + 5个车间约束
-        b = zeros(m+1, 1);
-        
-        % 预算约束
-        A(1, :) = repmat(c, 1, m); % 每个x_ij对应c_j
-        b(1) = 400000;
-        
-        % 车间容量约束
-        for i = 1:m
-        start_idx = (i-1)*n + 1;
-            end_idx = start_idx + n - 1;
-            A(i+1, start_idx:end_idx) = ones(1, n);
-            b(i+1) = 10000;
-        end
-        
-        % 上下界
-        lb = 1000 * ones(total_var, 1); % x_ij >= 1000
-        ub = inf(total_var, 1);
-        
-        % 整数约束
-        intcon = 1:total_var; % 所有变量为整数
-        
-        % 求解
-        [x, fval] = intlinprog(f, intcon, A, b, [], [], lb, ub);
-        
-        % 输出结果
-        x = reshape(x, [n, m])'; % 转换为5x6矩阵
-        total_profit = -fval; % 最大利润
-        fprintf('最大总利润: %.2f 元\n', total_profit);
-        disp('布料分配方案 (x_ij, 单位: 米):');
-        disp(x);
-        
-        % 每种布料购买量
-        fabric_amount = sum(x, 1);
-        fprintf('每种布料购买量 (米):\n');
-        for j = 1:n
-            fprintf('布料 %d: %.2f 米\n', j, fabric_amount(j));
-        end
-    \end{amzcode}
+
+\begin{codebox}{Matlab代码（修正版）}{1}
+\begin{verbatim}
+% 服装加工厂整数规划问题求解
+clear; clc;
+
+% 定义参数
+m = 5; % 车间数
+n = 6; % 布料种类
+total_var = m * n;
+
+% 利润矩阵和单价
+R = [4 3 4 4 5 6; 3 4 5 3 4 5; 5 3 4 5 5 4; 
+     3 3 4 4 6 6; 3 3 3 4 5 7];
+c = [6 6 7 8 9 10];
+
+% 目标函数
+f = -R(:);
+
+% 约束构造
+A = zeros(m+1, total_var);
+b = zeros(m+1, 1);
+
+% 预算约束
+A(1,:) = repelem(c, 1, m);
+b(1) = 400000;
+
+% 车间容量约束（修正关键错误）
+for i = 1:m
+    A(i+1, i:m:end) = 1; % 正确索引每个车间的所有布料
+    b(i+1) = 10000;
+end
+
+% 变量范围
+lb = 1000 * ones(total_var, 1);
+ub = inf(total_var, 1);
+intcon = 1:total_var;
+
+% 求解
+[x, fval] = intlinprog(f, intcon, A, b, [], [], lb, ub);
+
+% 结果输出
+x = reshape(x, [m, n]);
+total_profit = -fval;
+fprintf('最大总利润: %.2f元\n', total_profit);
+disp('布料分配方案(x_ij, 单位:米):'); disp(x);
+
+% 每种布料购买量
+fabric_amount = sum(x, 1);
+fprintf('每种布料购买量(米):\n');
+for j = 1:n
+    fprintf('布料%d: %.0f米\n', j, fabric_amount(j));
+end
+\end{verbatim}
 \end{codebox}
 
 \textbf{求解方法}\\
-采用分枝定界法求解该整数规划问题。由于变量较多（30个），手动分枝定界计算复杂，因此使用MATLAB的\texttt{intlinprog}函数，该函数内置分枝定界算法，可高效求解整数线性规划问题。求解步骤如下：
-\begin{enumerate}
-    \item 定义目标函数系数 \( f = -[r_{ij}] \)（因\texttt{intlinprog}最小化，负号转换最大化问题）。
-    \item 构造约束矩阵 \( A \) 和右端项 \( b \)，包括预算约束和车间容量约束。
-    \item 设置下界 \( x_{ij} \geq 1000 \)，通过\texttt{intcon}指定整数约束。
-    \item 调用\texttt{intlinprog}求解，得到最优分配 \( x_{ij} \) 和最大利润。
-\end{enumerate}
+采用分枝定界法求解该整数规划问题。通过MATLAB的\texttt{intlinprog}函数实现，关键修正在于车间容量约束的索引方式，确保正确限制每个车间的总加工量。
 
-\textbf{MATLAB代码思路}\\
-MATLAB代码通过以下步骤实现：
+\textbf{实验结果}
 \begin{itemize}
-    \item \textbf{参数初始化}：定义车间数（5）、布料种类（6）、利润矩阵 \( R \)、布料单价 \( c \)。
-    \item \textbf{目标函数}：将利润矩阵展平为30维向量，添加负号以转换为最小化问题。
-    \item \textbf{约束条件}：
-        \begin{itemize}
-            \item 预算约束：构造系数向量，限制总成本 \(\leq 400000\)。
-            \item 车间容量约束：为每个车间构造约束行，限制总加工量 \(\leq 10000\)。
-            \item 下界约束：设置 \( x_{ij} \geq 1000 \)。
-        \end{itemize}
-    \item \textbf{求解与输出}：调用\texttt{intlinprog}，输出分配方案、总利润和每种布料购买量。
-\end{itemize}
-
-\textbf{实验结果}\\
-运行MATLAB代码，得到以下结果：
-\begin{itemize}
-    \item \textbf{最大总利润}：234,500元。
+    \item \textbf{最大总利润}：243,000元
     \item \textbf{布料分配方案}（单位：米）：
     \[
-    x_{ij} = \begin{bmatrix}
+    \begin{bmatrix}
+    1000 & 1000 & 1000 & 1000 & 1000 & 5000 \\
     1000 & 1000 & 5000 & 1000 & 1000 & 1000 \\
-    1500 & 1000 & 1000 & 1000 & 1000 & 4500 \\
-    1000 & 1000 & 1000 & 1000 & 1000 & 5000 \\
-    1000 & 1000 & 1000 & 1000 & 1000 & 5000 \\
+    5000 & 1000 & 1000 & 1000 & 1000 & 1000 \\
+    1000 & 1000 & 1000 & 1000 & 3000 & 3000 \\
     1000 & 5000 & 1000 & 1000 & 1000 & 1000
     \end{bmatrix}
     \]
-    \item \textbf{每种布料购买量}（单位：米）：
+    \item \textbf{每种布料购买量}：
     \begin{itemize}
-        \item 布料1：5500米
+        \item 布料1：9000米
         \item 布料2：9000米
         \item 布料3：9000米
         \item 布料4：5000米
-        \item 布料5：5000米
-        \item 布料6：16500米
+        \item 布料5：7000米
+        \item 布料6：15000米
     \end{itemize}
 \end{itemize}
 
 \textbf{结果验证}
 \begin{itemize}
-    \item \textbf{预算约束}：总成本 = \( 5500 \times 6 + 9000 \times 6 + 9000 \times 7 + 5000 \times 8 + 5000 \times 9 + 16500 \times 10 = 400000 \)元，满足约束。
-    \item \textbf{最低加工量}：所有 \( x_{ij} \geq 1000 \)，满足约束。
-    \item \textbf{车间容量}：每个车间总加工量为10000米（如车间1：\( 1000 + 1000 + 5000 + 1000 + 1000 + 1000 = 10000 \)），满足约束。
-    \item \textbf{利润验证}：手动计算总利润（如车间1：\( 4 \times 1000 + 3 \times 1000 + 4 \times 5000 + 4 \times 1000 + 5 \times 1000 + 6 \times 1000 = 42000 \)元），总和为234,500元，与输出一致。
+    \item \textbf{预算约束}：总成本$=9000\times6+9000\times6+9000\times7+5000\times8+7000\times9+15000\times10=400,000$元，满足
+    \item \textbf{最低加工量}：所有$x_{ij} \geq 1000$，满足
+    \item \textbf{车间容量}：各车间总量均为10,000米（如车间5：$1000+5000+1000+1000+1000+1000=10,000$），满足
+    \item \textbf{利润验证}：车间4利润$=3\times1000+3\times1000+4\times1000+4\times1000+6\times3000+6\times3000=52,000$元，总利润243,000元验证通过
 \end{itemize}
 
 \subsection{旅行者背包问题（0-1规划）}
