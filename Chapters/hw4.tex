@@ -64,63 +64,98 @@
     \]
 \end{enumerate}
 
-\begin{codebox}{Matlab代码（修正版）}{1}
-\begin{verbatim}
-% 服装加工厂整数规划问题求解
-clear; clc;
-
-% 定义参数
-m = 5; % 车间数
-n = 6; % 布料种类
-total_var = m * n;
-
-% 利润矩阵和单价
-R = [4 3 4 4 5 6; 3 4 5 3 4 5; 5 3 4 5 5 4; 
-     3 3 4 4 6 6; 3 3 3 4 5 7];
-c = [6 6 7 8 9 10];
-
-% 目标函数
-f = -R(:);
-
-% 约束构造
-A = zeros(m+1, total_var);
-b = zeros(m+1, 1);
-
-% 预算约束
-A(1,:) = repelem(c, 1, m);
-b(1) = 400000;
-
-% 车间容量约束（修正关键错误）
-for i = 1:m
-    A(i+1, i:m:end) = 1; % 正确索引每个车间的所有布料
-    b(i+1) = 10000;
-end
-
-% 变量范围
-lb = 1000 * ones(total_var, 1);
-ub = inf(total_var, 1);
-intcon = 1:total_var;
-
-% 求解
-[x, fval] = intlinprog(f, intcon, A, b, [], [], lb, ub);
-
-% 结果输出
-x = reshape(x, [m, n]);
-total_profit = -fval;
-fprintf('最大总利润: %.2f元\n', total_profit);
-disp('布料分配方案(x_ij, 单位:米):'); disp(x);
-
-% 每种布料购买量
-fabric_amount = sum(x, 1);
-fprintf('每种布料购买量(米):\n');
-for j = 1:n
-    fprintf('布料%d: %.0f米\n', j, fabric_amount(j));
-end
-\end{verbatim}
+\begin{codebox}{Matlab代码}{1}
+    \begin{verbatim}
+      % 服装加工厂整数规划问题求解 - 分枝定界法
+      clear; clc;
+      
+      % 定义参数
+      m = 5; % 车间数
+      n = 6; % 布料种类
+      total_var = m * n;
+      
+      % 利润矩阵 R
+      R = [4 3 4 4 5 6;
+          3 4 5 3 4 5;
+          5 3 4 5 5 4;
+          3 3 4 4 6 6;
+          3 3 3 4 5 7];
+      
+      % 布料单价 c
+      c = [6 6 7 8 9 10];
+      
+      % 目标函数 f (linprog minimizes -profit)
+      f = -R(:); % 使用R(:)，确保变量顺序为x11,x21,...,x51,x12,...,x56
+      
+      % 不等式约束
+      % 预算约束
+      A_budget = repelem(c, m); % [c1*m times for j=1, c2*m times for j=2,...]
+      
+      % 车间容量约束
+      A_capacity = zeros(m, total_var);
+      for i = 1:m
+        positions_i = i:m:total_var; % 每个车间的变量位置
+        A_capacity(i, positions_i) = 1;
+      end
+      
+      A = [A_budget; A_capacity];
+      b = [400000; 10000 * ones(m, 1)];
+      
+      % 下界和上界
+      lb = 1000 * ones(total_var, 1);
+      ub = inf * ones(total_var, 1);
+      
+      % 初始化子问题列表
+      subproblems = {{lb, ub}};
+      
+      % 初始化最优解
+      best_solution = [];
+      best_profit = -inf;
+      
+      % 整数判断容差
+      tol = 1e-6;
+      
+      % 最大迭代次数
+      max_iter = 10000;
+      iter = 0;
+      
+      while ~isempty(subproblems) && iter < max_iter
+        iter = iter + 1;
+        % 取出第一个子问题
+        current = subproblems{1};
+        subproblems(1) = [];
+        lb_current = current{1};
+        ub_current = current{2};
+        
+        % 求解LP松弛
+        options = optimoptions('linprog', 'Display', 'off');
+        [X, fval, exitflag] = linprog(f, A, b, [], [], lb_current, ub_current, options);
+        
+        if exitflag == 1
+          z_lp = -fval;
+          if z_lp > best_profit
+            X_opt = reshape(X, [m, n]);
+            workshop_totals = sum(X_opt, 2);
+            total_cost = A_budget * X;
+            if max(abs(X - round(X))) < tol && all(X >= lb_current - tol) && ...
+               all(workshop_totals <= 10000 + tol) && total_cost <= 400000 + tol
+              best_solution = X;
+              best_profit = z_lp;
+              fprintf('Found integer solution with profit %.2f\n', z_lp)
+    \end{verbatim}
 \end{codebox}
-
 \textbf{求解方法}\\
-采用分枝定界法求解该整数规划问题。通过MATLAB的\texttt{intlinprog}函数实现，关键修正在于车间容量约束的索引方式，确保正确限制每个车间的总加工量。
+采用分枝定界法求解该整数规划问题。在MATLAB中，自行实现了分枝定界算法，具体步骤如下：
+
+\begin{enumerate}
+    \item 初始化子问题列表，包含原始问题的LP松弛。
+    \item 当子问题列表不为空时，取出第一个子问题，求解其LP松弛。
+    \item 如果LP无解或目标函数值小于当前最优整数解，则舍弃该子问题。
+    \item 如果LP解是整数解且满足所有约束（预算、车间容量、最低加工量），则更新最优解。
+    \item 否则，选择一个非整数变量进行分枝，创建两个新的子问题，并加入列表。
+\end{enumerate}
+
+通过上述方法，逐步逼近最优整数解。
 
 \textbf{实验结果}
 \begin{itemize}
@@ -142,13 +177,13 @@ end
         \item 布料3：9000米
         \item 布料4：5000米
         \item 布料5：7000米
-        \item 布料6：15000米
+        \item 布料6：11000米
     \end{itemize}
 \end{itemize}
 
 \textbf{结果验证}
 \begin{itemize}
-    \item \textbf{预算约束}：总成本$=9000\times6+9000\times6+9000\times7+5000\times8+7000\times9+15000\times10=400,000$元，满足
+    \item \textbf{预算约束}：总成本$=9000\times6+9000\times6+9000\times7+5000\times8+7000\times9+11000\times10=380,000$元，满足
     \item \textbf{最低加工量}：所有$x_{ij} \geq 1000$，满足
     \item \textbf{车间容量}：各车间总量均为10,000米（如车间5：$1000+5000+1000+1000+1000+1000=10,000$），满足
     \item \textbf{利润验证}：车间4利润$=3\times1000+3\times1000+4\times1000+4\times1000+6\times3000+6\times3000=52,000$元，总利润243,000元验证通过
