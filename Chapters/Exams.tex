@@ -1,0 +1,355 @@
+\ifx\allfiles\undefined
+
+	% 如果有这一部分另外的package，在这里加上
+	% 没有的话不需要
+	
+	\begin{document}
+\else
+\fi
+    \chapter{历年试题}
+	以下试题来源于CC98：\\
+	【控制天下】梁军2023-2024春夏学期运筹学回忆卷 https://www.cc98.org/topic/5911118 复制本链接到浏览器或者打开【CC98】微信小程序查看~\\
+	【控制天下】梁军2023夏学期运筹学期末回忆卷 https://www.cc98.org/topic/5630287 复制本链接到浏览器或者打开【CC98】微信小程序查看~\\
+	【控制天下】2022年夏 控院运筹学 lj老师回忆卷 https://www.cc98.org/topic/5345089 复制本链接到浏览器或者打开【CC98】微信小程序查看~\\
+	以下回答部分参考了：\\
+	【控制天下】控院 运筹学lj班 期末小测复习笔记 https://www.cc98.org/topic/5928374 复制本链接到浏览器或者打开【CC98】微信小程序查看~
+	在此感谢以上同学的辛苦回忆和分享！\\
+	接下来我会按章节将以上题目进行分类，并尝试给出回答。
+    \section{Chapter 2:线性规划}
+	\begin{enumerate}
+		\item \textbf{简述单纯形法的理论依据（证据链）？}
+		\begin{enumerate}
+            \item 线性规划所有可行解构成的集合为\textcolor{red}{凸集}，也可能是\textcolor{red}{无界域};
+            \item 线性规划的可行域有\textcolor{red}{有限}个顶点;
+            \item 线性规划的每个基可行解对应可行域的\textcolor{red}{一个顶点};
+            \item 若线性规划有最优解，必定在\textcolor{red}{某个顶点}上达到，但\textbf{并非只能在顶点上达到}。\\
+        \end{enumerate}
+		\item \textbf{单纯形法是怎么确定起始点的？}
+		\begin{enumerate}
+            \item \textbf{标准化}：第一步，将线性规划模型化为标准型；
+            \item \textbf{解方程}：第二步，解矩阵方程，得到基可行解：从 \( m \times  n \) 系数矩阵 \( \mathbf{A} \) 中总能得到一个 \( m \) 阶单位阵 \( {\mathbf{E}}_{m} \) ,取这一个上 \( m \) 阶单位阵为初始可行基,令非基变量均为0,
+则可以得到一个初始可行解 \( {\mathbf{x}}^{\left( 0\right) } \) ,为 \( {\left( {b}_{1},b2,\ldots ,{b}_{m},0,0,\ldots ,0\right) }^{T} \) 。
+        \end{enumerate}
+		\item \textbf{单纯形法怎么从一个点转移到另一个点？ }
+		\begin{itemize}
+            \item \textbf{基变换法}：当一个基可行解不是最优解或不能判断时，需要过渡到另一个基可行解，即从基可行解，
+    \[
+    \mathbf{x}^{(0)} = \left( x_1^{(0)}, x_2^{(0)}, \ldots, x_m^{(0)}, 0, \ldots, 0 \right)^T
+    \]
+    对应的可行基 
+
+    \[
+    B = \left( p_1, p_2, \ldots, p_m \right)
+    \]
+    中替换一个列向量，用来替换的列向量与原向量组未被替换的向量线性无关。
+
+    例如，用非基变量 \( p_{m+t} \left( 1 \leq t \leq n - m \right) \) （称为换入变量）替换基变量 \( p_1 \left( 1 \leq 1 \leq m \right) \) （称为换出变量），就可得到一个新的可行基
+
+    \[
+    B_1 = \left( p_1, \ldots, p_{1-1}, p_{m+t}, p_{1+1}, \ldots, p_m \right)
+    \]
+    注意检查新基的奇异性，若不可逆，从而可以求出一个新的基可行解
+        \end{itemize}
+		\item \textbf{单纯形法如何在没有遍历完所有顶点的情况下判断当前的顶点是否是最优解？} 
+		\begin{itemize}
+			\item 引入一个 \( \sigma \) 作为检验数,假设要检验基可行解 \( {\mathbf{x}}^{\left( 1\right) } \) ,将 \( {\mathbf{x}}^{\left( 1\right) } \) 和任意解 \( \mathbf{x} \) 分别代入
+目标函数并化简,就能得到 \( {z}^{\left( 1\right) } = {z}^{\left( 0\right) } + \mathop{\sum }\limits_{{j = m + 1}}^{n}{\sigma }_{j}{x}_{j} \) ,进而可以通过 \( \sigma \) 的正/负/等于
+零来判断目前的基可行解是否为最优解,其中\( \sigma_j = c_j - z_j \)，\( z_j = \sum_{i=1}^{m} c_i a_{ij}^{\prime} \quad (j = m+1, \cdots, n) \)。
+			\begin{enumerate}
+			\item 如果 \( \sigma_j \leq 0 \quad (j = m+1, \cdots, n) \)，则 \( \mathbf{x}^{(1)} \) 是问题的最优解，最优值为 \( z^{(1)} \)；
+            \item 如果 \( \sigma_j \leq 0 \quad (j = m+1, \cdots, n) \)，且至少存在一个 \( \sigma_{m+k} = 0 \quad (0 \leq k \leq n-m) \)，
+            则问题有无穷多个最优解，\( \mathbf{x}^{(1)} \) 是其中之一，最优值为 \( z^{(1)} \)；
+            \item 如果 \( \sigma_j < 0 \quad (j = m+1, \cdots, n) \)，则 \( \mathbf{x}^{(1)} \) 是问题的唯一最优解，最优值为 \( z^{(1)} \)；
+            \item 如果存在某个检验数 \( \sigma_{m+k} > 0 \quad (0 \leq k \leq n-m) \)，并且对应的系数向量 \( \mathbf{p}_{m+k} \) 的各分量
+            \( a_{i, m+k} \leq 0 \quad (i = 1, 2, \cdots, m) \)，则问题具有无界解（即无最优解）。
+        	\end{enumerate}
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{Chapter 4:整数规划}
+	\begin{enumerate}
+		\item \textbf{为什么说分支定界法没有直接求解整数规划，但是得到的却是整数规划的解？}
+		\begin{itemize}
+			\item 因为分支定界法率先求解的是整数规划问题失去整数约束后的线性规划问题，求出初始最优解后可以去掉所有的非整数搜索空间，将原问题划分为若干个子问题(分枝)继续求解线性规划问题的最优解，由此不断缩紧最优值的上下界，并通过剪枝不断缩小搜索空间，最终即能得到整数规划问题的解，
+		\end{itemize}
+		\item \textbf{简述分支定界法的步骤（可以用流程图说明）？}
+		步骤如下：
+		\begin{enumerate}
+			\item 先不考虑整数约束，求解整数规划的松弛问题，可能得到以下情况之一：
+			\begin{itemize}
+				\item 若松弛问题没有可行解，则整数规划也没有可行解，停止计算；
+				\item 若松弛问题有最优解，并符合整数规划的整数条件，则线性规划的最优解即为整数规划的最优解，停止计算；
+				\item 若松弛问题有最优解，但不符合整数规划的整数条件，转入下一步。
+			\end{itemize}
+			\item 分支：从不满足整数条件的基本变量中任意选一个 $x_i$ 进行分支，它必须满足 $x_i \leq [x_i]$ 或 $x_i \geq [x_i] + 1$ 中的一个，把这两个约束条件加进原问题中，形成两个互不相容的子问题。
+
+			\item 定界：把各分支松弛问题$B_i$的最优值中较大的更新为新上界，任取各分支中整数问题$A_i$中的一个可行解对应的目标函数值作为下界，用它来判断分支是保留还是剪枝。
+
+			\item 剪枝：把那些子问题的最优值与界值比较，低于下界或无可行解的分支全部剪掉，直到每个分支都查清为止。
+
+			\item 直到最后得到子问题的最优解 $z^*$ 等于下界，停止分支，剪枝。
+		\end{enumerate}
+
+		\item \textbf{整数规划分支定界法分枝，定界，剪枝是怎么实现的？}
+		\begin{itemize}
+			\item 分支：从不满足整数条件的基本变量中任意选一个 $x_i$ 进行分支，它必须满足 $x_i \leq [x_i]$ 或 $x_i \geq [x_i] + 1$ 中的一个，把这两个约束条件加进原问题中，形成两个互不相容的子问题。
+
+			\item 定界：把各分支松弛问题$B_i$的最优值中较大的更新为新上界，任取各分支中整数问题$A_i$中的一个可行解对应的目标函数值作为下界，用它来判断分支是保留还是剪枝。
+
+			\item 剪枝：把那些子问题的最优值与界值比较，低于下界或无可行解的分支全部剪掉，直到每个分支都查清为止。
+		\end{itemize}
+	\end{enumerate}
+
+	\section{Chapter 5:非线性规划}
+	\begin{enumerate}
+		\item \textbf{解决有约束非线性规划的思路有哪些？分别介绍对应的算法。}
+		\\求解约束极值问题的三种主要思路:
+		\begin{enumerate}
+			\item \textbf{将迭代点严格局限于可行域内}，将迭代点序列严格控制在可行域内，从而执行的迭代过程实际上为无约束优化过程。例如：
+			\begin{itemize}
+			\item \textbf{数值法}中的\hyperref[sec:可行方向法]{可行方向法}
+			\end{itemize}
+			\item \textbf{约束极值问题化为无约束问题}，序列无约束优化方法，简称SUMT方法，又称制约函数法。该方法通过将约束项处理成制约函数项加入到目标函数中形成新的广义目标函数，从而将有约束问题化为广义目标函数下的无约束问题，再利用前述的无约束优化迭代算法求解。例如：
+			\begin{itemize}
+				\item \textbf{解析法}中的拉格朗日乘子法、\hyperref[sec:K-T条件]{K-T条件}
+				\item \textbf{数值法}中的\hyperref[sec:制约函数法]{制约函数法}，包括惩罚函数（内点法）和障碍函数（外点法）。
+			\end{itemize}
+			\item \textbf{复杂约束极值问题化为简单约束问题}，在迭代点附近的序列线性化或序列二次函数逼近方法，通过运用迭代点附近的台劳展开，将有约束的非线性规划近似为极易求解的线性规划或二次
+			规化以实现迭代求解。例如：
+			\begin{itemize}
+				\item \textbf{数值法}中的\hyperref[sec:逐次逼近类方法]{逐次逼近类方法}，包括逐次线性规划法(SLP)和逐次二次规划法(SQP)。
+			\end{itemize}
+		\end{enumerate}
+		\item \textbf{共轭方向法是什么？}
+		\begin{itemize}
+			\item     共轭方向法是指:针对于正定二次函数极小问题（无约束极值问题的一个特殊情况）
+			\[
+			\min f(X) = \frac{1}{2} X^T A X + B^T X + C,
+			\]
+			设向量 $P^{(i)}, (\ i=0,1,2,\cdots,n-1$) 为 $A$ 共轭，则从任一点 $X^{(0)}$ 出发，相继以
+			$
+			P^{(0)}, P^{(1)}, \cdots, P^{(n-1)}
+			$
+			为搜索方向的迭代算法，采用一维搜索步长，经 $n$ 次迭代后就能收敛于正定二次函数最小问题的极值解，
+			\[
+			\begin{cases}
+				\min f(X^{(k)} + \lambda P^{(k)}) = f(X^{(k)} + \lambda_k P^{(k)}), \\
+				X^{(k+1)} = X^{(k)} + \lambda_k P^{(k)}
+			\end{cases}
+			\]
+		\end{itemize}
+		\item \textbf{共轭方向法用来求解什么样的特殊的非线性问题？}
+		\begin{itemize}
+			\item 正定二次函数极小问题    
+			\[
+			\min f(X) = \frac{1}{2} X^T A X + B^T X + C,
+			\]
+			其中：$A$ 为 $n \times n$ 对称正定矩阵，$B$ 为系数向量，$C$ 为常数，即无约束极值问题的一个特殊情况
+		\end{itemize}
+		\item \textbf{共轭方向法最大的问题是什么？有什么缺点要改进为共轭梯度法？}
+		\begin{enumerate}
+			\item A 共轭的搜索方向向量组理论上为\[
+			P^{(0)}, P^{(1)}, \cdots, P^{(n-1)}
+			\]
+			但实用时如何构造这n个向量，它们具有什么形式，没有说明。
+			\item 尽管在理论上只需n次迭代就能命中目标，但实际的运算误差的存在，使问题的解具有不定性。
+		\end{enumerate}
+		\item \textbf{求解共轭梯度法之前要进行怎样的处理？ }
+		\begin{itemize}
+			\item 对于一般无约束非线性规划问题，可以通过逼近当前迭代点附近是够小的邻域内进行泰勒级数近似的方式，将一般非线性函数展开成二次函数，而采用具有一定迭代精度的共轭梯度法。
+			\[
+			f(X^{(k+1)}) = f(X^{(k)} + \lambda_k P^{(k)}),
+			\]
+
+			\[
+			\approx f(X^{(k)}) + \lambda_k f^T(X^{(k)}) P^{(k)} + \frac{1}{2} \lambda_k^2 (P^{(k)})^T H(X^{(k)}) P^{(k)},
+			\]
+		\end{itemize}
+		\item \textbf{制约函数法核心是什么？ }
+		\begin{itemize}
+			\item 将有约束非线性规划问题转换为无约束非线性规划问题。
+		\end{itemize}
+		\item \textbf{罚函数和障碍函数相似与不同？}
+		\begin{itemize}
+			\item \textbf{相似}:惩罚函数和障碍函数都是根据非线性规划问题约束条件构造出来的新的无约束目标函数，通过引人它们都有可能把约束极值问题转换为无约束极值问题;
+			\item \textbf{不同}:
+			\begin{itemize}
+				\item 惩罚函数是引入一个惩罚项和一个惩罚因子，$X$ 在可行域 $R$内时$P(X,M)$变为无约束非线性规划问题，$X$ 在可行域 $R$ 外时，$X$ 离可行域 $R$越远，惩罚项越大，促使下一步的迭代点拉向$R$内;
+			    \item 障碍函数是引入一个障碍项和一个障碍因子使迭代点靠近边界时，障碍项迅速增长，从而阻止迭代点跑到可行域外面。
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{内点法、外点法分别是什么意思？}
+		\begin{itemize}
+			\item \textbf{内点法}：又称障碍函数法，迭代点始终保持在可行域内：初始点选在可行域内，在迭代过程中，通过引入障碍函数来阻止迭代点接近可行域的边界。
+			\item \textbf{外点法}：又称惩罚函数法，迭代点可以在可行域内或外：初始点可任意选择，在迭代过程中，通过引入惩罚函数将跑到可行域外的点拉回可行域内，距离越远惩罚项越大，对于在可行域内的点则不理会。
+		\end{itemize}
+	\end{enumerate}
+	\section{Chapter 6:目标规划}
+	\begin{enumerate}
+		\item \textbf{多目标规划一共几种方法？各自的特点是什么？}\\
+		\textcolor{red}{本题在ppt上没有找到答案，以下是结合AI回答的答案，选取了常用的几点}
+		\begin{itemize}
+			    \item \textbf{权重法（Weighted Sum Method）}
+			\begin{itemize}
+				\item \textbf{核心思想}：将多目标线性加权为单目标：
+				$$ \min \sum_{i=1}^k w_i f_i(x), \quad \sum_{i=1}^k w_i = 1, \, w_i \geq 0. $$
+				\item \textbf{特点}：
+				\begin{itemize}
+					\item 简单，适用于凸问题（Pareto前沿为凸集）。
+					\item 权重选择主观，非凸部分解可能遗漏。
+				\end{itemize}
+			\end{itemize}
+
+			\item \textbf{$\epsilon$-约束法（$\epsilon$-Constraint Method）}
+			\begin{itemize}
+				\item \textbf{核心思想}：保留一个主目标，其余转为约束：
+				$$ \min f_j(x), \quad \text{s.t.} \quad f_i(x) \leq \epsilon_i \ (i \neq j). $$
+				\item \textbf{特点}：
+				\begin{itemize}
+					\item 可生成完整Pareto前沿（含非凸解）。
+					\item 需手动调整$\epsilon_i$，计算量大。
+				\end{itemize}
+			\end{itemize}
+
+			\item \textbf{目标规划（Goal Programming）}
+			\begin{itemize}
+				\item \textbf{核心思想}：最小化与目标值$g_i$的偏差：
+				$$ \min \sum_{i=1}^k |f_i(x) - g_i|. $$
+				\item \textbf{变体}：优先目标规划（按优先级分层优化）。
+				\item \textbf{特点}：灵活但依赖预设目标值$g_i$。
+			\end{itemize}
+
+			\item \textbf{帕累托前沿法（Pareto Frontier-Based Methods）}
+			\begin{itemize}
+				\item \textbf{核心思想}：直接生成Pareto最优解集（如NSGA-II算法）。
+				\item \textbf{特点}：
+				\begin{itemize}
+					\item 适合非凸/非线性问题，计算成本高。
+					\item 无需权重或约束，提供全面权衡。
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{为什么说求出来是满意解而往往不是最优解？}
+		\begin{itemize}
+			\item 因为实际中的多目标规划问题往往存在相互矛盾的约束条件，求解多目标规划问题是指尽可能达到或接近一个或多个已给定的指标值，且目标约束是软约束，实际中不一定要求绝对满足，所以多目标规划求出来是满意解而往往不是最优解,甚至不是可行解
+		\end{itemize}
+	\end{enumerate}
+	\section{Chapter 7:动态规划}
+		\begin{enumerate}
+		\item \textbf{什么是动态规划问题（多阶段决策问题）？ }
+		\begin{itemize}
+			\item 包含若干相互联系阶段(与时间有关)的复杂问题，每个阶段即为一个子问题，包含离散确定性、离散随机性、连续确定性、连续随机性四种
+		\end{itemize}
+		\item \textbf{简述动态规划中逆序求解方法流程。}
+		\begin{itemize}
+			\item \textbf{逆序求解流程}：
+			\begin{enumerate}
+				\item \textbf{阶段划分}：将问题按决策顺序划分为$N$个阶段（$k=N,N-1,\dots,1$）。
+				\item \textbf{边界条件}：设定最终阶段$k=N$的状态$f_N(x_N)$的值。
+				\item \textbf{递推方程}：从$k=N-1$到$k=1$逆向计算，逆序方法基本方程：
+				\[f_k(S_k) = \text{opt}_{u_k \in D_k(S_k)} \left\{ v_k(S_k, u_k(S_k)) + f_{k+1}(u_k(S_k)) \right\}\]
+				\[k = n, n-1, \cdots, 1\]
+				边界条件为\[f_{n+1}(S_{n+1}) = 0\]
+				\item \textbf{最优解}：$f_1(x_1)$即为全局最优值，路径通过正向追踪状态转移获得。
+			\end{enumerate}
+		\end{itemize}
+		\item \textbf{动态规划有哪两种解决方法？区别是什么？ }
+		\begin{itemize}
+			\item \textbf{逆序方法}：从终点逐段向始点方向寻找最短路线的策略
+			\item \textbf{顺序方法}：从始点逐段向终点方向寻找最短路线的策略
+		\end{itemize}
+		\end{enumerate}
+	\section{Chapter 9:图论}
+			\begin{enumerate}
+		\item \textbf{什么是最短路问题？ }
+		\begin{itemize}
+			\item 给定一个赋权有向(无向)赋权图，给定每个弧(或边)的权重，要求寻找一条连接指定起点和终点的最短路线，即是在所有从指定起点到指定终点的路中，求一条权(所有弧或边的权之和)最小的路。
+		\end{itemize}
+		\item \textbf{请概述dijkstra算法，可以画流程图。}
+		\begin{thmbox}{\textbf{Dijkstra算法}}{}
+		\begin{itemize}
+		\item {\textbf{符号定义}}
+		\begin{itemize}
+			\item 用$P(v_i)$、$T(v_j)$分别表示$v_i$点的P标号、T标号
+			\item $S_i$表示第$i$步时具有P标号点的集合（其中有已经确定好的走的那些点）
+			\item $\lambda(v)$表示轨迹标记，可以回溯父节点，初值$\lambda(v)=M$，其中：
+			\begin{itemize}
+				\item $\lambda(v)=m$：在$v_s$到$v$的最短路上，$v$的前一个点是$v_m$
+				\item $\lambda(v)=M$：$D$中不含从$v_s$到$v$的路（最开始不知道谁是谁的爹，所以统一用M表示）
+				\item $\lambda(v)=0$：表示$v=v_s$(第一个节点，父亲竟是我自己)
+			\end{itemize}
+
+		\end{itemize}
+		
+		\item {\textbf{算法流程}}
+		\begin{enumerate}[label=\textbf{步骤 \arabic*：}, leftmargin=*]
+			\item \textbf{开始} ($i=0$)
+			\begin{itemize}
+				\item 令P标号集合$S_0 = \{v_s\}$
+				\item P标号点的权值$P(v_s) = 0$
+				\item 路径标记$\lambda(v_s) = 0$
+				\item 对每一个$v \neq v_s$：
+				\begin{itemize}
+					\item 令T标号权值$T(v) = +\infty$
+					\item $\lambda(v) = M$
+				\end{itemize}
+				\textcolor{red}{即T标号，即未确定的点，权值为无穷大，路径标记为M}
+				\item 令$k = s$（$k$为当前最新的P标号点）
+			\end{itemize}
+			
+			\item \textbf{第一步}
+			\begin{itemize}
+				\item 如果$S_i = V$（全部点的集合），算法终止
+				\begin{itemize}
+					\item 对每个$v \in S_i$，$d(v_s,v) = P(v)$
+				\end{itemize}
+				\item 否则转入"第二步"
+			\end{itemize}
+			
+			\item \textbf{第二步}
+			\begin{itemize}
+				\item 考查每个使$(v_k,v_j) \in A$且$v_j \notin S_i$的点$v_j$(找还没纳入进来的点)
+				\item 即考察所有以$v_k$为始点的弧段$v_k \to v_j$(注意只往前走一步)
+				\item 如果$T(v_j) > P(v_k) + w_{kj}$，则：
+				\begin{itemize}
+					\item 把$T(v_j)$修改为$P(v_k) + w_{kj}$
+					\item 把$\lambda(v_j)$修改为$k$
+				\end{itemize}
+				\item 如果$T(v_j) \leq P(v_k) + w_{kj}$，转入"第三步"
+			\end{itemize}
+			
+			\item \textbf{第三步}
+			\begin{itemize}
+				\item 令$T(v_{j^*}) = \min\limits_{v_j \notin S_i} \{T(v_j)\}$
+				\item 在所有现有的T标号中找出值最小的那一个
+				\item 如果$T(v_{j^*}) < +\infty$，则：
+				\begin{itemize}
+					\item 把$v_{j^*}$的T标号变为P标号$P(v_{j^*}) = T(v_{j^*})$
+					\item 令$S_{i+1} = S_i \cup \{v_{j^*}\}$
+					\item 令$k = j^*$
+					\item 把$i$换成$i+1$，转入"第一步"
+				\end{itemize}
+				\item 否则终止
+				\begin{itemize}
+					\item 对每一个$v \in S_i$，$d(v_s,v) = P(v)$
+					\item 对每一个$v \notin S_i$，$d(v_s,v) = T(v)$（即找不到通路）
+				\end{itemize}
+			\end{itemize}
+		\end{enumerate}
+	\end{itemize}
+	\end{thmbox}
+		\end{enumerate}
+
+
+\ifx\allfiles\undefined
+	% 如果有这一部分的参考文献的话，在这里加上
+	% 没有的话不需要
+	% 因此各个部分的参考文献可以分开放置
+	% 也可以统一放在主文件末尾。
+	
+	%  bibfile.bib是放置参考文献的文件，可以用zotero导出。
+	% \bibliography{bibfile}
+	
+	end{document}
+	\else
+	\fi

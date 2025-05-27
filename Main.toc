@@ -102,3 +102,10 @@
 \contentsline {subsubsection}{破圈法}{147}{figure.caption.70}%
 \contentsline {subsubsection}{避圈法}{150}{figure.caption.80}%
 \contentsline {subsection}{\numberline {9.4.2}最短路问题}{154}{subsection.9.4.2}%
+\contentsline {chapter}{\numberline {10}历年试题}{161}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Chapter 2:线性规划}{161}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Chapter 4:整数规划}{162}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Chapter 5:非线性规划}{164}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Chapter 6:目标规划}{166}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Chapter 7:动态规划}{167}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Chapter 9:图论}{168}{section.10.6}%
