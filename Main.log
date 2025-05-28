@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  27 MAY 2025 14:29
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  28 MAY 2025 21:02
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1865,10 +1865,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
 \pydata@fh@_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted=\write7
 \openout7 = `_A02C83A7DBD96295BEAEFB72C2BEE2DE.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250527142928 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted config  --timestamp 20250528210224 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_A02C83A7DBD96295BEAEFB72C2BEE2DE.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250527142928 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20250528210224 A02C83A7DBD96295BEAEFB72C2BEE2DE)...executed.
 
  (./_minted/default.style.minted) (./_minted/7324404AF635195863778AABCB5B3219.highlight.minted
 

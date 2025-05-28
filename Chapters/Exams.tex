@@ -186,49 +186,41 @@
 	\end{enumerate}
 	\section{Chapter 6:目标规划}
 	\begin{enumerate}
-		\item \textbf{多目标规划一共几种方法？各自的特点是什么？}\\
-		\textcolor{red}{本题在ppt上没有找到答案，以下是结合AI回答的答案，选取了常用的几点}
-		\begin{itemize}
-			    \item \textbf{权重法（Weighted Sum Method）}
+		\item \textbf{多目标规划一共几种方法？各自的特点是什么？}
+		\begin{itemize}			
+			\item \textbf{软约束法}
 			\begin{itemize}
-				\item \textbf{核心思想}：将多目标线性加权为单目标：
-				$$ \min \sum_{i=1}^k w_i f_i(x), \quad \sum_{i=1}^k w_i = 1, \, w_i \geq 0. $$
+				\item \textbf{核心思想}：引入“偏差变量”将目标转化为约束处理，“以各个目标的偏差量尽可能小”为原则，构造一个新的目标函数，继而继续求解这个新目标函数的单目标规划问题：
 				\item \textbf{特点}：
 				\begin{itemize}
-					\item 简单，适用于凸问题（Pareto前沿为凸集）。
-					\item 权重选择主观，非凸部分解可能遗漏。
+					\item 原来的硬约束(系统约束)是必须满足的。
+					\item 由原目标函数“下沉”得到的约束条件是软约束(目标约束)，可以不符合，只是尽量满足
 				\end{itemize}
 			\end{itemize}
-
-			\item \textbf{$\epsilon$-约束法（$\epsilon$-Constraint Method）}
+			    \item \textbf{权重法}
 			\begin{itemize}
-				\item \textbf{核心思想}：保留一个主目标，其余转为约束：
-				$$ \min f_j(x), \quad \text{s.t.} \quad f_i(x) \leq \epsilon_i \ (i \neq j). $$
-				\item \textbf{特点}：
-				\begin{itemize}
-					\item 可生成完整Pareto前沿（含非凸解）。
-					\item 需手动调整$\epsilon_i$，计算量大。
-				\end{itemize}
+				\item \textbf{核心思想}：多个目标函数的加权处理，得到单一目标函数，再进行单目标优化求解
+				\begin{align*}
+					\text{Max } Z_1 \\
+					\text{Min } Z_2 & \quad \longrightarrow \quad \max \lambda_1 Z_1 - \lambda_2 Z_2 + \lambda_3 Z_3 \quad ; \lambda_1, \lambda_2, \lambda_3 \text{ 是加权系数}
+				\end{align*}
 			\end{itemize}
 
-			\item \textbf{目标规划（Goal Programming）}
-			\begin{itemize}
-				\item \textbf{核心思想}：最小化与目标值$g_i$的偏差：
-				$$ \min \sum_{i=1}^k |f_i(x) - g_i|. $$
-				\item \textbf{变体}：优先目标规划（按优先级分层优化）。
-				\item \textbf{特点}：灵活但依赖预设目标值$g_i$。
-			\end{itemize}
 
-			\item \textbf{帕累托前沿法（Pareto Frontier-Based Methods）}
+			\item \textbf{主目标函数法}
 			\begin{itemize}
-				\item \textbf{核心思想}：直接生成Pareto最优解集（如NSGA-II算法）。
-				\item \textbf{特点}：
-				\begin{itemize}
-					\item 适合非凸/非线性问题，计算成本高。
-					\item 无需权重或约束，提供全面权衡。
-				\end{itemize}
+				\item \textbf{核心思想}：在多个目标函数中选择并保留一个主目标函数，其他目标函数处理为“不低于”或“不高于”可接受的约束条件，从而化为单目标函数，再进行单目标优化求解
+				\begin{align*}
+					\text{Max } Z_1 \\
+					\text{Min } Z_2 & \quad \longrightarrow \quad \max Z_3 \\
+					\text{s.t.} \quad Z_1 & \geq \alpha_1 \\
+					Z_2 & \leq \alpha_2 \\
+					\alpha_1, \alpha_2 & \text{ 是可接受值}
+				\end{align*}
 			\end{itemize}
 		\end{itemize}
+
+		在构建目标规划的数学模型时，首先确定各目标的目标函数，之后对于不同优先级的目标我们赋予不同级别的优先因子$p_i$，相同优先级的目标通过加权系数决定其主次，最后构成目标函数的最小化问题。
 		\item \textbf{为什么说求出来是满意解而往往不是最优解？}
 		\begin{itemize}
 			\item 因为实际中的多目标规划问题往往存在相互矛盾的约束条件，求解多目标规划问题是指尽可能达到或接近一个或多个已给定的指标值，且目标约束是软约束，实际中不一定要求绝对满足，所以多目标规划求出来是满意解而往往不是最优解,甚至不是可行解
